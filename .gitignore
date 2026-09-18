@@ -1,0 +1,21 @@
+# Secrets / environment
+.env
+.env.*
+*.key
+*.pem
+secrets.json
+appsettings.*.local.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vs/
+*.user
+
+# Build / dependency output
+node_modules/
+bin/
+obj/
+dist/

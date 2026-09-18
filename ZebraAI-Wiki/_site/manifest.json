@@ -1,0 +1,2512 @@
+{
+  "source_base_path": "c:/ZebraAIDocs/ZebraAI-Wiki",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Compliance-Privacy-Security/Compliance.md",
+      "output": {
+        ".html": {
+          "relative_path": "Compliance-Privacy-Security/Compliance.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Compliance-Privacy-Security/Data-Governance-and-Security-Guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "Compliance-Privacy-Security/Data-Governance-and-Security-Guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Data-Sources-Available/Analytics-and-Reporting-Guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "Data-Sources-Available/Analytics-and-Reporting-Guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Data-Sources-Available/Data-Pipeline-Documentation.md",
+      "output": {
+        ".html": {
+          "relative_path": "Data-Sources-Available/Data-Pipeline-Documentation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Data-Sources-Available/Data-Processing-Architecture-Guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "Data-Sources-Available/Data-Processing-Architecture-Guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Data-Sources-Available/Data-Sources-Available.md",
+      "output": {
+        ".html": {
+          "relative_path": "Data-Sources-Available/Data-Sources-Available.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Data-Sources-Available/Synthetic-Data-Creation-Process.md",
+      "output": {
+        ".html": {
+          "relative_path": "Data-Sources-Available/Synthetic-Data-Creation-Process.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Data-Sources-Available/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Data-Sources-Available/toc.html"
+        },
+        ".json": {
+          "relative_path": "Data-Sources-Available/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Showcase/Rapid-Analyze.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Showcase/Rapid-Analyze.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Showcase/Trellis.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Showcase/Trellis.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/BYO-ADO-Data.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/BYO-ADO-Data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/BYO-ADO-Wiki.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/BYO-ADO-Wiki.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/BYO-Data-File.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/BYO-Data-File.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/BYO-SQL-Data.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/BYO-SQL-Data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/CPR-Search.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/CPR-Search.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Commercial-Case-Embedding-Search.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Commercial-Case-Embedding-Search.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Commercial-Case-ICM.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Commercial-Case-ICM.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Commercial-Case-KM.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Commercial-Case-KM.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Commercial-Case-Lookup.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Commercial-Case-Lookup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Commercial-Case-Search.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Commercial-Case-Search.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Commercial-Case-VBD.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Commercial-Case-VBD.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Commercial-Vector-Case-Review.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Commercial-Vector-Case-Review.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Consumer-Case-KM.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Consumer-Case-KM.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Consumer-Case-Lookup.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Consumer-Case-Lookup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Consumer-Case-Search.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Consumer-Case-Search.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Experiment-Types.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Experiment-Types.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Functions.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Functions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/ICM-Search.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/ICM-Search.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/KM-Search.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/KM-Search.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Know-Me.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Know-Me.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Search-using-Advanced-Editor.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Search-using-Advanced-Editor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Simple-UX.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Simple-UX.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Experiment-Types/Translator.md",
+      "output": {
+        ".html": {
+          "relative_path": "Experiment-Types/Translator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Feedback-and-Support/Important-Links.md",
+      "output": {
+        ".html": {
+          "relative_path": "Feedback-and-Support/Important-Links.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Feedback-and-Support/Provide-Feedback-or-File-Bugs.md",
+      "output": {
+        ".html": {
+          "relative_path": "Feedback-and-Support/Provide-Feedback-or-File-Bugs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Feedback-and-Support/ZebraAI-FAQ.md",
+      "output": {
+        ".html": {
+          "relative_path": "Feedback-and-Support/ZebraAI-FAQ.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Feedback-and-Support/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Feedback-and-Support/toc.html"
+        },
+        ".json": {
+          "relative_path": "Feedback-and-Support/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/API-Documentation.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/API-Documentation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Common-Use-Cases.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Common-Use-Cases.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Configuration-Guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Configuration-Guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Dataflow.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Dataflow.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Developer-Setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Developer-Setup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Get-Started-with-ZebraAI.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Get-Started-with-ZebraAI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Guide-to-ZebraAI.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Guide-to-ZebraAI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Key-Features.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Key-Features.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Models.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Models.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Overview.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/Troubleshooting-Guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/Troubleshooting-Guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guide-to-ZebraAI/ZebraAI-Experiments.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/ZebraAI-Experiments.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Guide-to-ZebraAI/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Guide-to-ZebraAI/toc.html"
+        },
+        ".json": {
+          "relative_path": "Guide-to-ZebraAI/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guides/Calling-API-with-Logic-Apps.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guides/Calling-API-with-Logic-Apps.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guides/Developer-Data-Access-Guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guides/Developer-Data-Access-Guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guides/Getting-Started-with-SkillsBuddy.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guides/Getting-Started-with-SkillsBuddy.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guides/Prompt-Guidelines-for-API-Use.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guides/Prompt-Guidelines-for-API-Use.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Guides/ZebraAI-YAML-file-for-DfM.md",
+      "output": {
+        ".html": {
+          "relative_path": "Guides/ZebraAI-YAML-file-for-DfM.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Prompt-Engineering/CreateTrustfulPromptsFrameWork.md",
+      "output": {
+        ".html": {
+          "relative_path": "Prompt-Engineering/CreateTrustfulPromptsFrameWork.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Prompt-Engineering/Prompt-Engineering-with-ZebraAI.md",
+      "output": {
+        ".html": {
+          "relative_path": "Prompt-Engineering/Prompt-Engineering-with-ZebraAI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Prompt-Engineering/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Prompt-Engineering/toc.html"
+        },
+        ".json": {
+          "relative_path": "Prompt-Engineering/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Service-Level-Agreement-for-ZebraAI.md",
+      "output": {
+        ".html": {
+          "relative_path": "Service-Level-Agreement-for-ZebraAI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Admin.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Admin.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Chat.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Chat.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Create-An-Experiment.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Create-An-Experiment.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Editor-closed.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Editor-closed.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Editor-select.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Editor-select.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Explore-AI-Experiments.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Explore-AI-Experiments.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Frequency-Penalty.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Frequency-Penalty.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Navigate.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Navigate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Presence-Penalty.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Presence-Penalty.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Setting-Up.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Setting-Up.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Temp.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Temp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Setting-Up/Top_P.md",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/Top_P.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Setting-Up/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Setting-Up/toc.html"
+        },
+        ".json": {
+          "relative_path": "Setting-Up/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "TMaaS-Create-or-Edit.md",
+      "output": {
+        ".html": {
+          "relative_path": "TMaaS-Create-or-Edit.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "TMaaS-My-models.md",
+      "output": {
+        ".html": {
+          "relative_path": "TMaaS-My-models.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "TMaaS.md",
+      "output": {
+        ".html": {
+          "relative_path": "TMaaS.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Transparency-Note-for-ZebraAI.md",
+      "output": {
+        ".html": {
+          "relative_path": "Transparency-Note-for-ZebraAI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Add-Experiment-API.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Add-Experiment-API.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Add-Experiment-API/How-to-connect-to-ZebraAI-through-Logic-Apps.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Add-Experiment-API/How-to-connect-to-ZebraAI-through-Logic-Apps.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Approval-Process.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Approval-Process.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Approving-ZebraAI-Experiments-Process.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Approving-ZebraAI-Experiments-Process.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Dark.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Dark.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Edit-An-Experiment.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Edit-An-Experiment.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Experiment-Attributes.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Experiment-Attributes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Manage-MY-Experiment-API.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Manage-MY-Experiment-API.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Manage-MY-Experiments.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Manage-MY-Experiments.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Mermaid.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Mermaid.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Request-CSS-Data-Usage.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Request-CSS-Data-Usage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Revoke-CSS-Data-Usage.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Revoke-CSS-Data-Usage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Run-An-Experiment.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Run-An-Experiment.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Settings-Editor.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Settings-Editor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Simple.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Simple.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Source.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Source.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/Working-with-Experiments.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/Working-with-Experiments.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Working-with-Experiments/ZebraAI-Experiment-Approvers-Checklist.md",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/ZebraAI-Experiment-Approvers-Checklist.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Working-with-Experiments/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Working-with-Experiments/toc.html"
+        },
+        ".json": {
+          "relative_path": "Working-with-Experiments/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "ZebraAI-Data-Infrastructure-Validation-Report.md",
+      "output": {
+        ".html": {
+          "relative_path": "ZebraAI-Data-Infrastructure-Validation-Report.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "_site/wiki/imgs/readme.md",
+      "output": {
+        ".html": {
+          "relative_path": "_site/wiki/imgs/readme.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/API-Editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/API-Editor.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Add-API.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Add-API.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Admin-menu.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Admin-menu.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Architecture.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Architecture.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Attributes.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Attributes.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/BYO-ADO-Data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/BYO-ADO-Data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/BYO-ADO-Wiki-Multi.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/BYO-ADO-Wiki-Multi.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/BYO-ADO-Wiki.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/BYO-ADO-Wiki.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/BYO-Data-File.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/BYO-Data-File.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/BYO-SQL-Data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/BYO-SQL-Data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/CPR-Search.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/CPR-Search.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/CPR-Solution-Area.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/CPR-Solution-Area.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/CSS-Data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/CSS-Data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Chat-2-Clipboard.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Chat-2-Clipboard.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Chat-Parameters.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Chat-Parameters.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Chat.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Chat.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-Additional-Search.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-Additional-Search.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-Case-Data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-Case-Data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-Case-Flow.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-Case-Flow.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-ICM.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-ICM.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-KM-Results.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-KM-Results.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-KM.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-KM.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-Lookup.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-Lookup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-Search.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-Search.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Commercial-VBD.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Commercial-VBD.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Consumer-Additional-Search.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Consumer-Additional-Search.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Consumer-KM.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Consumer-KM.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Consumer-Lookup.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Consumer-Lookup.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Consumer-Search.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Consumer-Search.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Contributors.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Contributors.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Create-Experiment-v2.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Create-Experiment-v2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Create-Experiment.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Create-Experiment.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Create-Incident.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Create-Incident.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Custom-UX-Def.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Custom-UX-Def.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Custom-UX.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Custom-UX.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Dark-on.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Dark-on.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Deleted-Experiments.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Deleted-Experiments.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/DfM-YAML-Code-Path.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/DfM-YAML-Code-Path.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Edit-Experiment-text.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Edit-Experiment-text.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Edit-Select-UX.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Edit-Select-UX.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Edit-Share.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Edit-Share.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Editor-Mode-closed.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Editor-Mode-closed.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Editor-Mode-monaco.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Editor-Mode-monaco.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Editor-Mode-text.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Editor-Mode-text.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Embedding.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Embedding.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Entitlement-request.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Entitlement-request.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Entitlement.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Entitlement.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Experiment-Flow.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Experiment-Flow.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Experiment-Output-Controls.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Experiment-Output-Controls.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Experiment-levels.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Experiment-levels.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Experiment-lifecycle.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Experiment-lifecycle.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Explore-Experiments-Shared.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Explore-Experiments-Shared.jpg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Explore-Experiments-Shared.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Explore-Experiments-Shared.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Few-shot-prompt.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Few-shot-prompt.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Follow-up-Prompt.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Follow-up-Prompt.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Functions.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Functions.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Hackathon user graphic.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Hackathon user graphic.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Home-buttons.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Home-buttons.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/ICM-Additional-Search.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/ICM-Additional-Search.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/ICM-Search.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/ICM-Search.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/KM-Search.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/KM-Search.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Know-Me.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Know-Me.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Logic-App-1.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Logic-App-1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Logic-App-2.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Logic-App-2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Logic-App-3.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Logic-App-3.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Logic-App-My-Exp.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Logic-App-My-Exp.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Manage-MY-Experiments-Icons.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Manage-MY-Experiments-Icons.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Manage-MY-Experiments.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Manage-MY-Experiments.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Manage-My-API.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Manage-My-API.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Manage-My-APIs.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Manage-My-APIs.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Mermaid-Viewer.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Mermaid-Viewer.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Mermaid-output.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Mermaid-output.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Model-Select.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Model-Select.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Model-tab.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Model-tab.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Models.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Models.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/My-Experiment-Stats.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/My-Experiment-Stats.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Parameter-select.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Parameter-select.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Parameter-text.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Parameter-text.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Parameters-Editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Parameters-Editor.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Parameters-tab.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Parameters-tab.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Prompt-History.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Prompt-History.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Prompt-Monaco.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Prompt-Monaco.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Prompt-icons.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Prompt-icons.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Prompt-select.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Prompt-select.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Prompt-with-content-2.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Prompt-with-content-2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Prompt-with-content.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Prompt-with-content.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Prompt-with-data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Prompt-with-data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Rapid-Analyze-2.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Rapid-Analyze-2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Rapid-Analyze.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Rapid-Analyze.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Revoke-CSS-Data-Detail.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Revoke-CSS-Data-Detail.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Revoke-CSS-Data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Revoke-CSS-Data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Run-Experiment-Simple.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Run-Experiment-Simple.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Run-Submit-for-CSS-Data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Run-Submit-for-CSS-Data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Attributes.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Attributes.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Contributors.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Contributors.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Experiment.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Experiment.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Follow-up.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Follow-up.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Model.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Model.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Parameters.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Parameters.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Prompt-Builder.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Prompt-Builder.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Prompt-TextArea.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Prompt-TextArea.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor-Prompt.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor-Prompt.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Settings-editor.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Settings-editor.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Simple-UX.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Simple-UX.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Simple-off.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Simple-off.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Simple-on.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Simple-on.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Source-off.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Source-off.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Source-on.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Source-on.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Submit-for-CSS-Data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Submit-for-CSS-Data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Supporting-content-mermaid.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Supporting-content-mermaid.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Synthetic-Data-Process.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Synthetic-Data-Process.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Synthetic-Data.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Synthetic-Data.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Synthetic-with-Data-Request.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Synthetic-with-Data-Request.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TEST.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TEST.PNG"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TEST2.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TEST2.PNG"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Case-FIlters-Planning-Cat.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Case-FIlters-Planning-Cat.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Create-Advanced-Opt.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Create-Advanced-Opt.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Create-Basic-Info.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Create-Basic-Info.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Create-Comm-Case-FIlters.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Create-Comm-Case-FIlters.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Create-Comm-Product-Master.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Create-Comm-Product-Master.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Create-Common-Filters.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Create-Common-Filters.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Create.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Create.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Icons.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Icons.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Menu.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Menu.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-My-models.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-My-models.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/TMaaS-Root.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/TMaaS-Root.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Teams.jpeg",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Teams.jpeg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Translator.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Translator.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Trellis-Flow.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Trellis-Flow.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Trellis-Home.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Trellis-Home.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Trustful-Prompts-1.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Trustful-Prompts-1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Trustful-Prompts-2.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Trustful-Prompts-2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Trustful-Prompts-3.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Trustful-Prompts-3.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Trustful-Prompts-4.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Trustful-Prompts-4.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/UX-tab.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/UX-tab.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/VPN-config.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/VPN-config.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/VPN-request.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/VPN-request.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Vector-Case-Review.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Vector-Case-Review.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/Zebra-home.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/Zebra-home.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/ZebraAI-Dataflow.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/ZebraAI-Dataflow.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/ZebraAIRealData.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/ZebraAIRealData.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/email-svg-icon-5.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/email-svg-icon-5.jpg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/explore-ai-experiments-img1.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/explore-ai-experiments-img1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/explore-ai-experiments-img2.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/explore-ai-experiments-img2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/fake.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/fake.jpg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/feedback.png",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/feedback.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "wiki/imgs/readme.md",
+      "output": {
+        ".html": {
+          "relative_path": "wiki/imgs/readme.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "wiki/imgs/readme.md",
+      "output": {
+        "resource": {
+          "relative_path": "wiki/imgs/readme.md"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

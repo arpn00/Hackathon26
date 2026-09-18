@@ -1,0 +1,515 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Service Level Agreement (SLA) for ZebraAI | ZebraAI </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Service Level Agreement (SLA) for ZebraAI | ZebraAI ">
+    
+    
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="stylesheet" href="styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="styles/docfx.css">
+      <link rel="stylesheet" href="styles/main.css">
+      <meta property="docfx:navrel" content="toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="">
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="service-level-agreement-sla-for-zebraai">Service Level Agreement (SLA) for ZebraAI</h1>
+
+<p>Last Updated Data: February 7, 2025</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#Introduction">Introduction</a><br>
+1.1 <a href="#ZebraAI-Mission">ZebraAI Mission</a><br>
+1.2 <a href="#ZebraAI-Vision">ZebraAI Vision</a><br>
+1.3 <a href="#Team-Code-Values">Team Core Values</a></li>
+<li><a href="#Service-Level-Objectives-(SLO)">Service Level Objectives (SLO)</a></li>
+<li><a href="#Scope">Scope</a></li>
+<li><a href="#Out-of-Scope">Out of Scope</a></li>
+<li><a href="#Service-Overview">Service Overview</a></li>
+<li><a href="#Incident-Priority-Level-Definitions">Incident Priority Level Definitions</a></li>
+<li><a href="#Key-Performance-Indicators-(KPIs)">Key Performance Indicators (KPIs)</a><br>
+7.1 <a href="#Uptime-Percentage">Uptime Percentage</a><br>
+7.2 <a href="#Initial-Response-Time">Initial Response Time</a><br>
+7.3 <a href="#Average-Resolution-Time">Average Resolution Time</a><br>
+7.4 <a href="#Data-Availability">Data Availability</a></li>
+<li><a href="#Support-Hours-and-Channels">Support Hours and Channels</a></li>
+<li>Responsibilities<br>
+9.1 ZebraAI Team<br>
+9.2 <a href="#Stakeholders/Users">Stakeholders/Users</a></li>
+<li><a href="#Incident-Management">Incident Management</a><br>
+10.1 <a href="#Incident-Response-Process">Incident Response Process</a></li>
+<li><a href="#Monitoring-and-Reporting">Monitoring and Reporting</a><br>
+11.1 <a href="#Automated-Monitoring">Automated Monitoring</a><br>
+11.2 <a href="#Regular-Reports">Regular Reports</a><br>
+11.3 <a href="#Stakeholder-Feedback">Stakeholder Feedback</a><br>
+11.4 <a href="#General-Monitoring">General Monitoring</a></li>
+<li><a href="#Disaster-Recovery-Procedures">Disaster Recovery Procedures</a><br>
+12.1 <a href="#Backup-and-Data-Recovery">Backup and Data Recovery</a><br>
+12.2 <a href="#Recovery-Time-Objective-(RTO)">Recovery Time Objective (RTO)</a><br>
+12.3 <a href="#Recovery-Point-Objective" title="RPO">Recovery Point Objective (RPO)</a></li>
+<li><a href="#Security,-Privacy,-and-Compliance">Security, Privacy, and Compliance</a><br>
+13.1 <a href="#Regulartory-Compliance">Regulatory Compliance</a><br>
+13.2 <a href="#Internal-Policies-and-Procedures">Internal Policies and Procedures</a><br>
+13.3 <a href="#audits-and-assessments">Audits and Assessments</a><br>
+13.4 <a href="#Data-Collection-and-Processing">Data Collection and Processing</a><br>
+13.5 <a href="#Data-Storage">Data Storage</a><br>
+13.6 <a href="#data-access-controls">Data Access Controls</a><br>
+13.7 <a href="#Communication-and-Training">Communication and Training</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document details the Service Level Agreement (SLA) for the management of ZebraAI. ZebraAI serves as an experimentation platform that enables widespread access to Azure OpenAI and CSS Support Data through secure and compliant prompt engineering. The platform operates within the PME environment, utilizing Cornerstone as its primary data provider.</p>
+<h3 id="zebraai-mission">ZebraAI Mission</h3>
+<p>ZebraAI serves as the hub for AI innovation within CSS, utilizing cutting-edge AI to optimize and enhance the support ecosystem across all functions.</p>
+<h3 id="zebraai-vision">ZebraAI Vision</h3>
+<p>ZebraAI envisions a future where AI drives continuous innovation within CSS, empowering teams to experiment and push the boundaries of what is possible.</p>
+<h3 id="team-core-values">Team Core Values</h3>
+<ul>
+<li><strong>Security First:</strong> 100% adherence to existing compliance, safety, security standards, RAI rules and regulations.</li>
+<li><strong>Innovation:</strong> Continuously pushing the boundaries of technology and creativity.</li>
+<li><strong>Agility:</strong> Maintaining the agility of our product features and functionality.</li>
+<li><strong>Collaboration:</strong> Collaborating with stakeholders to achieve common goals.</li>
+<li><strong>Excellence:</strong> Striving for excellence in everything we do.</li>
+<li><strong>Integrity:</strong> Upholding the highest standards of integrity and transparency.</li>
+</ul>
+<h2 id="service-level-objectives-slo">Service Level Objectives (SLO)</h2>
+<p>The primary objectives of this Service Level Agreement (SLA) for ZebraAI are to:</p>
+<ul>
+<li><strong>Ensure High Availability:</strong> Guarantee a minimum uptime of 99.9% for the ZebraAI platform, ensuring that users always have reliable access to the services.</li>
+<li><strong>Maintain Performance Standards:</strong> Ensure that the platform meets predefined performance benchmarks, including response times, throughput, and error rates, to provide a seamless user experience.</li>
+<li><strong>Data Security, Privacy, and Compliance:</strong> Adhere to Microsoft and industry standards and regulatory requirements to ensure the security and privacy of user data, leveraging secure and compliant prompt engineering practices.</li>
+<li><strong>Transparent Reporting:</strong> Provide regular and transparent reporting on service performance, incidents, and key performance indicators (KPIs) to stakeholders.</li>
+<li><strong>Continuous Improvement:</strong> Collect and act on stakeholder feedback to continuously improve the quality and functionality of the ZebraAI platform.</li>
+<li><strong>Effective Incident Management:</strong> Implement robust incident management processes to quickly identify, communicate, and resolve any issues that may arise, minimizing impact on users.</li>
+<li><strong>Support and Assistance:</strong> Offer timely and effective support to users, ensuring that any queries or issues are addressed promptly and satisfactorily based on their criticality or business impact level.</li>
+</ul>
+<h2 id="scope">Scope</h2>
+<p>This Service Level Agreement (SLA) outlines the specific ZebraAI services covered, including data ingestion, web application, and ZebraAI API. The objective of this SLA is to ensure the highest level of service quality, reliability, and performance for our stakeholders. The solution includes:</p>
+<ul>
+<li><strong>Data ingestion:</strong> ZebraAI ensures secure, compliant ingestion and handling of data from various sources. Cornerstone is the primary data provider for ZebraAI.
+<ul>
+<li>Automated and manual processes for ingesting data from various sources.</li>
+<li>Cleaning, transforming, and loading data for the creation of Azure AI Search indexes used by ZebraAI.</li>
+<li>Secure storage of ingested data following General Data Protection Regulation (GDPR) and all other security, privacy, and compliance requirements.</li>
+</ul>
+</li>
+<li><strong>Web App:</strong> The web application provides a user-friendly interface for stakeholders to create prompt engineering experiments that use the data available through ZebraAI.
+<ul>
+<li>Provides secure access to the web application for authenticated users.</li>
+<li>Web App is accessible and responsive across different devices and browsers.</li>
+<li>Regular bi-weekly updates and enhancements.</li>
+</ul>
+</li>
+<li><strong>ZebraAI API:</strong> The ZebraAI API allows developers to extend ZebraAI experiments capabilities into their own applications.
+<ul>
+<li>ZebraAI API for application development and integration.</li>
+<li>API is well-documented and easy to use.</li>
+<li>Consulting and support are available for API-related onboarding and issues.</li>
+</ul>
+</li>
+</ul>
+<h2 id="out-of-scope">Out of Scope</h2>
+<ul>
+<li><strong>Experiment Creation and Management:</strong> ZebraAI team does not create or maintain experiments for users. It is the user’s responsibility to create and maintain their own experiments.</li>
+<li><strong>Prompt Engineering:</strong> ZebraAI team does not write prompts for users but are available to consult on prompt engineering questions through the ZebraAI community. Self-help documentation and samples are available on the ZebraAI wiki.</li>
+<li><strong>Apps using ZebraAI API:</strong> ZebraAI team does not develop Apps using the ZebraAI API. Consulting and samples are available for demonstration purposes only.</li>
+</ul>
+<h2 id="service-overview">Service Overview</h2>
+<p><strong>Service Name:</strong> ZebraAI</p>
+<p><strong>Description:</strong> ZebraAI is an experimentation platform that democratizes the use of Azure OpenAI and CSS Support Data through secure and compliant prompt engineering. It accelerates the power of generative AI models, paving the way to production. ZebraAI provides a compliant and secure environment for experimentation with Azure OpenAI, unlocking creative potential for support solutions. Key capabilities include:</p>
+<ul>
+<li>Access to pre-trained models including GPT-4o, GPT-4, and more.</li>
+<li>Easy sample prompt access with the ability to share and reuse prompts.</li>
+<li>Conversation context monitoring relevant responses and follow-up information.</li>
+<li>Control over model output and ability to set response creativity parameters.</li>
+<li>Synthetic data for safe experimentation until approval criteria is met.</li>
+<li>Dynamic multiple sourced data insertion into prompts, including support case data.</li>
+<li>Hybrid search with vectorization service and search endpoint.</li>
+<li>A simple web interface for entering text prompts and receiving generated responses.</li>
+<li>Continuous collection and reporting of experiment feedback.</li>
+<li>LLM response evaluation via prompt test runs to refine approach.</li>
+<li>Availability  of a ZebraAI API connected to individual experiments.</li>
+</ul>
+<h2 id="incident-priority-level-definitions">Incident Priority Level Definitions</h2>
+<table>
+  <tr style="background-color: lightgrey; border: 1px solid black;">
+    <th style="border: 1px solid black;">Priority</th>
+    <th style="border: 1px solid black;">Description</th>
+    <th style="border: 1px solid black;">Example</th>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">Critical (Priority 0)</td>
+    <td style="border: 1px solid black;">Service outage or major functionality failure affecting all users</td>
+    <td style="border: 1px solid black;">Total system crash preventing all users from accessing ZebraAI</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">High (Priority 1)</td>
+    <td style="border: 1px solid black;">Significant impact on service performance or a large number of users</td>
+    <td style="border: 1px solid black;">Severe performance degradation slowing down ZebraAI for many users</td>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">Medium (Priority 2)</td>
+    <td style="border: 1px solid black;">Minor impact on service performance or affecting a smaller group of users</td>
+    <td style="border: 1px solid black;">Feature not working correctly for a subset of users, such as an experiment returning incorrect or missing results</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">Low (Priority 3)</td>
+    <td style="border: 1px solid black;">General inquiries or minor issues not significantly impacting service performance</td>
+    <td style="border: 1px solid black;">User reporting a typo in the user interface or requesting information about a feature</td>
+  </tr>
+</table>
+<h2 id="key-performance-indicators-kpis">Key Performance Indicators (KPIs)</h2>
+<p>The following KPIs will be used to measure the quality and effectiveness of the services provided by ZebraAI.</p>
+<h3 id="uptime-percentage">Uptime Percentage</h3>
+<table>
+  <tr style="background-color: lightgrey; border: 1px solid black;">
+    <th style="border: 1px solid black;">Service</th>
+    <th style="border: 1px solid black;">Uptime</th>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">ZebraAI (includes Azure services and data pipeline)</td>
+    <td style="border: 1px solid black;">99.9%</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">Web Application</td>
+    <td style="border: 1px solid black;">99.9%</td>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">API</td>
+    <td style="border: 1px solid black;">99.9%</td>
+  </tr>
+</table>
+<p>Measures the percentage of time the ZebraAI platform is operational and accessible to users. The target is typically set at 99.9% or higher and does not include weekends in the calculation. The calculation excludes Azure related outages not controlled by the ZebraAI team.</p>
+<h3 id="initial-response-time">Initial Response Time</h3>
+<p>Tracks the initial response (acknowledgement) times to ensure timely support within support hours for Critical and High priority issues. Mid and low issues will be worked during normal business hours.</p>
+<table>
+  <tr style="background-color: lightgrey; border: 1px solid black;">
+    <th style="border: 1px solid black; padding: 8px; text-align: left;">Issue Priority</th>
+    <th style="border: 1px solid black; padding: 8px; text-align: left;">Initial Response Time</th>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black; padding: 8px; text-align: left;">Critical issues</td>
+    <td style="border: 1px solid black; padding: 8px; text-align: left;">1 hour</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black; padding: 8px; text-align: left;">High-priority issues</td>
+    <td style="border: 1px solid black; padding: 8px; text-align: left;">4 hours</td>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black; padding: 8px; text-align: left;">Medium-priority issues</td>
+    <td style="border: 1px solid black; padding: 8px; text-align: left;">8 hours</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black; padding: 8px; text-align: left;">Low-priority issues</td>
+    <td style="border: 1px solid black; padding: 8px; text-align: left;">24 hours</td>
+  </tr>
+</table>
+<h3 id="average-resolution-time">Average Resolution Time</h3>
+<p>Tracks the average time taken to resolve incidents and issues reported by users, from initial report to resolution.</p>
+<table>
+  <tr style="background-color: lightgrey; border: 1px solid black;">
+    <th style="border: 1px solid black;">Issue Priority</th>
+    <th style="border: 1px solid black;">Avg Resolution Time</th>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">Critical</td>
+    <td style="border: 1px solid black;">4 hours</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">High priority</td>
+    <td style="border: 1px solid black;">8 hours</td>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">Medium-priority</td>
+    <td style="border: 1px solid black;">24 hours</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">Low priority</td>
+    <td style="border: 1px solid black;">72 hours</td>
+  </tr>
+</table>
+<h3 id="data-availability">Data Availability</h3>
+<p>Tracks the availability of data through the data pipeline and to users for experimentation.</p>
+<ul>
+<li>Data Processing Time: Maximum of 4 hours</li>
+<li>Data Ingestion Latency: Average time taken to ingest data from source to destination. Latency is dependent on the downstream source.
+<ul>
+<li>Cornerstone (cold path): 24-48 hours delay</li>
+<li>IcM: 24-48 hours delay</li>
+<li>Knowledge Management (KM): 1 week</li>
+</ul>
+</li>
+<li>Data Quality: 90% of data ingested without errors or discrepancies.</li>
+<li>Synthetic Data: Updated &lt; 3 hours of last successful ingestion from source systems.</li>
+</ul>
+<h2 id="support-hours-and-channels">Support Hours and Channels</h2>
+<ul>
+<li>Support Coverage: 12/5 (12 hours a day, 5 days a week)</li>
+<li>Support Hours: Monday to Friday: 4 AM to 4 PM (PST)</li>
+<li>Support <strong>Channels:</strong>
+<ul>
+<li>IcM(P0 and P1): SADPZEBRAAI\IncidentManager</li>
+<li>Teams(P2 and P3): ZebraAI | ZebraAI❓Questions and Help | Microsoft Teams</li>
+<li>Web Form(P2 and P3): <a href="https://aka.ms/zebraaifeedback">https://aka.ms/zebraaifeedback</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="/wiki/imgs/Create-Incident.png" alt="Create Incident"></p>
+<h2 id="responsibilities">Responsibilities</h2>
+<h3 id="zebraai-team">ZebraAI Team</h3>
+<p>The ZebraAI team is committed to delivering a high-quality AI solution and ensuring its seamless operation. Team responsibilities include:</p>
+<ul>
+<li><strong>Availability and Uptime:</strong> Ensuring ZebraAI is available and operational 99.9% of the time, minimizing downtime and disruptions.</li>
+<li><strong>Technical Support and Troubleshooting:</strong> Provide timely and effective technical support and troubleshooting to address any issues that may arise.</li>
+<li><strong>Maintenance and Updates:</strong> Regularly maintaining and updating ZebraAI to ensure its security and performance.</li>
+<li><strong>Performance Monitoring and Reporting:</strong> Monitor service performance and key performance indicators (KPIs) to ensure the platform meets its service level commitments.</li>
+</ul>
+<h3 id="stakeholdersusers">Stakeholders/Users</h3>
+<p>Stakeholders/users play a crucial role in the effective use of the ZebraAI platform. Stakeholder responsibilities include:</p>
+<ul>
+<li><strong>Accurate Information:</strong> Providing accurate and timely information when requesting support to facilitate efficient issue resolution.</li>
+<li><strong>Adherence to Guidelines:</strong> Following the guidelines and procedures outlined for using ZebraAI to ensure proper usage and compliance.</li>
+<li><strong>Issue Reporting:</strong> Promptly reporting any issues or bugs to the ZebraAI team to enable quick resolution and continuous improvement of the platform.</li>
+</ul>
+<h2 id="incident-management">Incident Management</h2>
+<p>Incident Reporting: Users can report incidents through multiple channels, IcM, Teams chat, and web form.</p>
+<h3 id="incident-response-process">Incident Response Process</h3>
+<table style="width: 100%; border-collapse: collapse;">
+  <tr style="background-color: lightgrey; border: 1px solid black;">
+    <th style="border: 1px solid black;">Step</th>
+    <th style="border: 1px solid black;">Description</th>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">Detection</td>
+    <td style="border: 1px solid black;">Incidents will be detected through automated monitoring tools and user reports.</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">Notification</td>
+    <td style="border: 1px solid black;">The support team will be notified immediately upon detection of an incident.</td>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">Acknowledgment</td>
+    <td style="border: 1px solid black;">Receipt of the incident report will be acknowledged with SLA time.</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">Classification</td>
+    <td style="border: 1px solid black;">The incident will be classified based on its severity by the ZebraAI team.</td>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">Assignment</td>
+    <td style="border: 1px solid black;">The incident will be assigned to the appropriate support team for resolution.</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">Investigation</td>
+    <td style="border: 1px solid black;">The support team will investigate the incident to identify the root cause.</td>
+  </tr>
+  <tr style="background-color: white; border: 1px solid black;">
+    <td style="border: 1px solid black;">Communication</td>
+    <td style="border: 1px solid black;">Regular updates will be provided to stakeholders during the incident resolution process. Critical and high priority incidents will get updates every hour.</td>
+  </tr>
+  <tr style="background-color: whitesmoke; border: 1px solid black;">
+    <td style="border: 1px solid black;">Resolution</td>
+    <td style="border: 1px solid black;">The support team will implement a fix to resolve the incident.</td>
+  </tr>
+</table>
+<h2 id="monitoring-and-reporting">Monitoring and Reporting</h2>
+<p>Service performance for ZebraAI will be meticulously tracked, measured, and reported using a comprehensive set of methods to ensure optimal functionality and transparency.</p>
+<h3 id="automated-monitoring">Automated Monitoring</h3>
+<p>Automated monitoring involves continuous oversight of ZebraAI’ s performance and uptime. This includes:</p>
+<ul>
+<li><strong>Continuous Monitoring:</strong> Real-time tracking of system performance and availability. Currently only viewable on the backend by ZebraAI administrators.</li>
+<li><strong>Manual Checks:</strong> Regular manual inspections to verify system integrity and functionality.</li>
+</ul>
+<h3 id="regular-reports">Regular Reports</h3>
+<p>Regular reporting ensures stakeholders are informed about service performance and any issues that arise. This includes:</p>
+<ul>
+<li><strong>Monthly Reports:</strong> Detailed monthly reports covering service performance, key performance indicators (KPIs), and any incidents or issues encountered.</li>
+<li><strong>Stakeholder Communication:</strong> Sharing these reports with stakeholders to maintain transparency and accountability.</li>
+</ul>
+<h3 id="stakeholder-feedback">Stakeholder Feedback</h3>
+<p>Engaging with stakeholders to gather feedback is crucial for continuous improvement. This includes:</p>
+<ul>
+<li><strong>Feedback Collection:</strong> Regularly soliciting feedback from stakeholders to gauge satisfaction and identify areas for enhancement.</li>
+<li><strong>Implementation of Changes:</strong> Making necessary adjustments based on feedback to improve service quality is dependent on prioritization.</li>
+</ul>
+<h3 id="general-monitoring">General Monitoring</h3>
+<p>General monitoring encompasses a range of metrics and alerting mechanisms to ensure comprehensive oversight. This includes:</p>
+<ul>
+<li><strong>Metrics Monitored:</strong> Tracking key metrics such as CPU and memory usage, response times, error rates, and request throughput.</li>
+<li><strong>Log Monitoring:</strong> Utilizing log analytics to monitor log data and detect anomalies.</li>
+<li><strong>Application Performance Monitoring:</strong> Monitor application performance and identify issues.</li>
+</ul>
+<h2 id="disaster-recovery-procedures">Disaster Recovery Procedures</h2>
+<p>To ensure the resilience and continuity of the ZebraAI platform, the following disaster recovery procedures are in place for the following:</p>
+<h3 id="backup-and-data-recovery">Backup and Data Recovery</h3>
+<ul>
+<li>Services will be recreated/deployed as needed except for non-ephemeral data</li>
+<li>ZebraAI uses <strong>Azure SQL</strong> for its non-ephemeral OLTP data store
+<ul>
+<li>Azure SQL Databases are always running on the latest stable version of the SQL Server database engine and patched OS with 99.99% availability</li>
+<li>Our data is always encrypted at rest and in transit</li>
+<li>The ZebraAI Azure SQL Database uses a DTUs based Standard S6 tier configured with <strong>Zone-redundant backup storage</strong>.</li>
+<li>Backups are managed by the service as follows:
+<ul>
+<li>Full backups every week.</li>
+<li>Differential backups every 12 or 24 hours.</li>
+<li>Transaction log backups approximately every 10 minutes.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data Recovery: In the event of data loss, data recovery procedures will be initiated to restore the most recent backup within 24 hours.</li>
+<li><strong>We do not CURRENTLY subscribe to Geo-redundant backups</strong></li>
+</ul>
+<h4 id="recovery-time-objective-rto">Recovery Time Objective (RTO)</h4>
+<p>RTO is the maximum acceptable amount of time that a system, application, or process can be down after a failure or disaster occurs before it must be restored to avoid unacceptable consequences.</p>
+<ul>
+<li><strong>Purpose:</strong> It focuses on the period within which critical operations and systems must be back online to ensure business continuity.</li>
+<li><strong>Recovery Time Objective (RTO):</strong> 24 hours for service or zone outage. We CURRENTLY do not offer an RTO for a Geo outage/loss.</li>
+</ul>
+<h4 id="recovery-point-objective-rpo">Recovery Point Objective (RPO)</h4>
+<p>RPO is the maximum acceptable amount of data loss measured in time. It indicates the point in time to which data must be recovered after a disaster to resume normal operations.</p>
+<ul>
+<li><strong>Purpose:</strong> It focuses on the amount of data that can be lost during a disruption and still be acceptable to the business.</li>
+<li><strong>Recovery Point Objective (RPO):</strong> 1 hour for DB service or zone outage. We CURRENTLY do not offer an RPO for a Geo outage/loss.</li>
+</ul>
+<h2 id="security-privacy-and-compliance">Security, Privacy and Compliance</h2>
+<p>Ensuring the security, privacy, and compliance of data is paramount for ZebraAI. To maintain adherence to relevant laws, regulations, and industry standards, ZebraAI implements the following measures:</p>
+<h3 id="regulatory-compliance">Regulatory Compliance</h3>
+<ul>
+<li><strong>Data Protection Regulations:</strong> ZebraAI complies with data protection regulations such as the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA) to ensure the privacy and protection of user data.</li>
+<li><strong>Data Privacy:</strong> The platform ensures compliance with relevant regulations, including GDPR, CCPA, and HIPAA, to safeguard user data.</li>
+<li><strong>Microsoft and Industry Standards:</strong> ZebraAI adheres to Microsoft and industry standards and best practices for data security.</li>
+<li><strong>Data Protection Addendum:</strong> ZebraAI adheres to the Microsoft Products and Services Data Protection Addendum, which governs data processing by Azure services.</li>
+</ul>
+<h3 id="internal-policies-and-procedures">Internal Policies and Procedures</h3>
+<ul>
+<li><strong>Data Handling Policies:</strong> Strict data handling policies ensure that data is collected, processed, and stored in compliance with relevant regulations.</li>
+<li><strong>Access Control Policies:</strong> Access control policies govern access ZebraAI and its data, preventing unauthorized access and ensuring data integrity.</li>
+</ul>
+<h3 id="audits-and-assessments">Audits and Assessments</h3>
+<ul>
+<li><strong>Regular Audits:</strong> Audits are conducted regularly to assess compliance with regulatory requirements and industry standards.</li>
+<li><strong>Risk Assessments:</strong> Periodic risk assessments identify and mitigate potential compliance risks.</li>
+<li><strong>Data Privacy Audits:</strong> Regular data privacy audits ensure compliance with data protection policies and regulations.</li>
+</ul>
+<h3 id="data-collection-and-processing">Data Collection and Processing</h3>
+<ul>
+<li><strong>Data Minimization:</strong> Only necessary data is collected for the operation of ZebraAI.</li>
+<li><strong>Data Anonymization:</strong> Data is anonymized to protect individual identities (customers and Microsoft employees).</li>
+<li><strong>Data Encryption:</strong> Data is encrypted both in transit and at rest using industry-standard encryption protocols.</li>
+</ul>
+<h3 id="data-storage">Data Storage</h3>
+<ul>
+<li><strong>Secure Storage:</strong> Data is stored in secure Azure storage with access controls and encryption.</li>
+<li><strong>Data Segregation:</strong> Data from different stakeholders is logically segregated to prevent unauthorized access.</li>
+</ul>
+<h3 id="data-access-controls">Data Access Controls</h3>
+<ul>
+<li><strong>Role-Based Access Control (RBAC):</strong> RBAC ensures that only authorized personnel have access to sensitive data.</li>
+<li><strong>Multi-Factor Authentication (MFA):</strong> MFA is required for accessing the AI solution and its data.</li>
+<li><strong>Audit Logs:</strong> Audit logs of all data access and modifications are maintained to ensure accountability and traceability.</li>
+</ul>
+<h3 id="communication-and-training">Communication and Training</h3>
+<ul>
+<li><strong>Employee Training:</strong> Employees receive regular training on data protection regulations, compliance requirements, and best practices for data security.</li>
+<li><strong>Awareness Programs:</strong> Awareness programs ensure that all stakeholders are informed about compliance requirements and their responsibilities.</li>
+<li><strong>Reporting and Notification:</strong> Stakeholders are notified of any compliance incidents and the steps taken to resolve them through predefined communication channels.</li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://cnfe.visualstudio.com/ZebraAI/_git/ZebraAI-Wiki?path=Service-Level-Agreement-for-ZebraAI.md&amp;version=GBmain&amp;line=1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

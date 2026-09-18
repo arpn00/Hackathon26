@@ -1,0 +1,65 @@
+{
+  "name": "ZebraAI Documentation",
+  "version": "1.0.0",
+  "type": "documentation",
+  "language": "markdown",
+  "description": "Comprehensive documentation and wiki for ZebraAI platform",
+  "repository": {
+    "type": "git",
+    "branch": "thads"
+  },
+  "structure": {
+    "wikiRoot": "ZebraAI-Wiki",
+    "mainSections": [
+      "Guide-to-ZebraAI",
+      "Experiment-Types", 
+      "Prompt-Engineering",
+      "Compliance-Privacy-Security",
+      "Data-Sources-Available",
+      "Experiment-Showcase",
+      "Feedback-and-Support"
+    ],
+    "keyFiles": [
+      "README.md",
+      "TMaaS.md", 
+      "Service-Level-Agreement-for-ZebraAI.md",
+      "Transparency-Note-for-ZebraAI.md",
+      "docfx.json",
+      "toc.yml"
+    ]
+  },
+  "contentTypes": [
+    "Architecture documentation and data flow diagrams",
+    "Experiment type specifications and guides",
+    "API documentation and usage examples", 
+    "Security and compliance guidelines",
+    "Prompt engineering methodologies (STAR, SAID, PROSE frameworks)",
+    "Support resources and troubleshooting guides"
+  ],
+  "promptEngineering": {
+    "frameworks": ["STAR", "SAID", "PROSE"],
+    "techniques": [
+      "Field substitution patterns",
+      "Custom prompt development",
+      "Multi-turn conversation design",
+      "Context preservation strategies"
+    ]
+  },
+  "experimentDocumentation": {
+    "types": [
+      "BYO-ADO-Wiki experiments",
+      "Commercial case analysis",
+      "Consumer case handling", 
+      "Function calling patterns",
+      "Translation workflows",
+      "Search-based experiments"
+    ]
+  },
+  "integrations": {
+    "platforms": [
+      "DfM Copilot integration via YAML",
+      "DocFX documentation generation",
+      "ZebraAI platform integration guides"
+    ]
+  }
+}

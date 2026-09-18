@@ -1,0 +1,12 @@
+schemaVersion: 1.0.0
+providers:
+- provider: InventoryAsCode
+  version: 1.0.0
+  metadata:
+    isProduction: false
+    accountableOwners:
+      service: 6885602c-fc2c-498b-98e8-e7492de56be1
+    routing:
+      defaultAreaPath:
+        org: cnfe
+        path: ZebraAI

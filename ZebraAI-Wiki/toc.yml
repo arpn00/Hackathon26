@@ -1,0 +1,50 @@
+- name: Welcome to ZebraAI
+  href: README.md
+- name: ZebraAI FAQ  
+  href: Feedback-and-Support/ZebraAI-FAQ.md
+- name: Welcome to TMaaS
+  href: TMaaS.md
+- name: My Models
+  href: TMaaS-My-models.md
+- name: Creating or Editing Models
+  href: TMaaS-Create-or-Edit.md
+- name: Getting Started
+  items:
+    - name: Setting Up ZebraAI
+      href: Setting-Up/Setting-Up.md
+    - name: Create an Experiment
+      href: Setting-Up/Create-An-Experiment.md
+    - name: Explore Existing Experiments
+      href: Setting-Up/Explore-AI-Experiments.md
+- name: Developer Resources
+  items:
+    - name: Developer Setup Guide
+      href: Guide-to-ZebraAI/Developer-Setup.md
+    - name: API Documentation
+      href: Guide-to-ZebraAI/API-Documentation.md
+    - name: Configuration Guide
+      href: Guide-to-ZebraAI/Configuration-Guide.md
+    - name: Troubleshooting Guide
+      href: Guide-to-ZebraAI/Troubleshooting-Guide.md
+    - name: Experiment Types Reference
+      href: Experiment-Types/Experiment-Types.md
+- name: Working with Experiments
+  items:
+    - name: Run an Experiment
+      href: Working-with-Experiments/Run-An-Experiment.md
+    - name: Edit an Experiment
+      href: Working-with-Experiments/Edit-An-Experiment.md
+    - name: Request CSS Data Usage
+      href: Working-with-Experiments/Request-CSS-Data-Usage.md
+    - name: Approval Process
+      href: Working-with-Experiments/Approval-Process.md
+- name: Feedback and Support
+  items:
+    - name: ZebraAI FAQ
+      href: Feedback-and-Support/ZebraAI-FAQ.md
+    - name: Provide Feedback or File Bugs
+      href: Feedback-and-Support/Provide-Feedback-or-File-Bugs.md
+    - name: Important Links
+      href: Feedback-and-Support/Important-Links.md
+- name: ZebraAI and SupHub Partnership
+  href: SupHub-Partnership/ZebraAI-and-Azure-CxP-SupHub-Partnership-Execution-Plan.md

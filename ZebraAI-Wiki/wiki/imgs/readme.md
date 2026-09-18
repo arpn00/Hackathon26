@@ -1,0 +1,1 @@
+adding a section to store images used in wiki docs

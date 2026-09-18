@@ -1,0 +1,114 @@
+# ZebraAI Connector for Power Platform
+
+---
+Tags:
+ - ZebraAIConnector
+ - author.gaouteiro
+---
+
+[**Tags**](/Tags): [ZebraAIConnector](/Tags/ZebraAIConnector) [author.gaouteiro](/Tags/author.gaouteiro)   
+
+## Overview
+
+The ZebraAI connector for Power Automate simplifies the interaction with the ZebraAI API. It abstracts the API complexities, allowing you to start building flows without worrying about setup or authentication.
+
+With this connector, you can quickly integrate ZebraAI capabilities into your automation processes.
+
+## Actions
+
+The connector provides two actions:
+
+### 1. Lookup
+
+
+The **Search** action retrieves data from ZebraAI based on a single search term.
+
+**Parameters:**
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| ExpID     | Yes      | The experiment ID. |
+| search    | Yes      | The search term. Can be a case number or any identifier to retrieve information from the ZebraAI API. |
+
+**Example:**
+
+> The screenshot illustrates where to input the experiment ID and the search term in the Power Automate action configuration.
+
+---
+
+### 2. SearchV2
+
+
+The **Full Search** action allows you to send a more complex search request to the ZebraAI API, including multiple parameters defined in the API reference [ReDoc](https://zebra-ai-api-uat.ait.microsoft.com/redoc/index.html?url=/swagger/v1/swagger.json#tag/Experiment/operation/Experiment_PostRunV2)
+
+**Parameters:**
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| ExpID     | Yes      | The experiment ID. |
+| Body      | Yes      | A JSON object containing search options and additional filters. |
+
+**Example Body:**
+
+```json
+{
+  "dataSearchOptions": {
+    "search": "CASE_NUMBER",
+    "filter": "FILTER_CONDITION"
+  },
+  "maxNumberOfRows": 2
+}
+```
+
+
+### 3. Data Keys
+
+
+**Parameters:**
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| Body      | Yes      | A JSON object containing search options and additional filters. |
+
+**Body structure:**
+
+```json
+{
+  "dataSearchKey": "string",
+  "dataSearchOptions": {
+    "searchMode": "string",
+    "search": "string",
+    "searchFields": "string",
+    "filter": "string",
+    "orderBy": "string"
+  },
+  "indexName": "string",
+  "maxNumberOfRows": 0,
+  "skipNumberOfRows": 0,
+  "useRealData": true
+}
+```
+
+---
+
+
+### 4. Data Keys Indexes
+
+In order to get the 'indexName' parameter needed in the Data Keys request body, you need to run this action to get all available indexes.
+
+<br>
+
+### How to Access the Connector
+
+<br>
+
+*   **In Power Automate:**  
+    Search for **'ZebraAI'** when adding an action.
+![image.png](/.attachments/image-27c5fbd1-c7ee-40c1-8d43-08b88966b3e2.png)
+    
+*   **In Copilot Studio:**  
+    Create an agent, then go to **Tools → Add a tool → Search for 'ZebraAI'**:
+
+
+![image.png](/.attachments/image-6d66ab0d-2ec7-4c48-aba3-2df5d7f5b3ca.png)
+

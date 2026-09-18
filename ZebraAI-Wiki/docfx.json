@@ -1,0 +1,45 @@
+{
+    "build": {
+      "content": [
+        {
+          "files": ["**/*.yml", "**/*md"]
+        }
+      ],
+      "resource": [
+      {
+        "files": [
+          ".attachments/**",
+          "**/*.{png,PNG}",
+          "**/*.{jpg,JPG}",
+          "Scripts/**"
+        ],
+        "exclude": [
+          "obj/**",
+          "_site/**"
+        ]
+      }],
+      "dest": "_site",
+      "markdownEngineName": "markdig",
+      "globalMetadata": {
+        "_appTitle": "ZebraAI",
+        "_enableSearch": "true",
+        "_enableNewTab": "true",
+        "_gitContribute": {
+          "branch": "main"
+        }
+      },
+      "fileMetadataFiles": [],
+      "template": [
+        "default"
+      ],
+      "postProcessors": [],
+      "noLangKeyword": false,
+      "keepFileLink": false,
+      "cleanupCacheHistory": false,
+      "disableGitFeatures": false,
+      "tocGeneration": {
+        "autoGenerateToc": true,
+        "overrideExistingToc": true
+      }
+    }
+  }

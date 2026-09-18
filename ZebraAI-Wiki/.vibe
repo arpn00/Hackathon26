@@ -1,0 +1,33 @@
+# ZebraAI Documentation - Vibe Configuration
+
+## Project Information
+name: ZebraAI Documentation
+type: documentation
+language: markdown
+
+## Repository Structure
+wiki-root: ZebraAI-Wiki
+main-sections:
+  - Guide-to-ZebraAI
+  - Experiment-Types
+  - Prompt-Engineering
+  - Compliance-Privacy-Security
+  - Data-Sources-Available
+  - Experiment-Showcase
+  - Feedback-and-Support
+
+## Key Documentation
+key-files:
+  - README.md
+  - TMaaS.md
+  - Service-Level-Agreement-for-ZebraAI.md
+  - Transparency-Note-for-ZebraAI.md
+
+## Documentation Types
+content-types:
+  - "Architecture documentation"
+  - "Experiment guides and specifications"
+  - "API documentation and usage examples"
+  - "Security and compliance guidelines"
+  - "Prompt engineering methodologies"
+  - "Support and troubleshooting guides"
