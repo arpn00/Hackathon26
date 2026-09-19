@@ -1,0 +1,15 @@
+{
+  "seedCase": {
+    "caseNumber": "8809082348468911",
+    "title": "Advertising Solutions — SMB consultation request (bespoke)",
+    "issueDescription": "SMB customer requesting a tailored advertising campaign consultation; unique account setup with no comparable prior engagements.",
+    "symptomText": "Open consultation request; bespoke requirements; no error or incident reported.",
+    "causeText": "Not a defect — advisory / consultation request.",
+    "rootCause": "Advertising > SMB > Consultation",
+    "currentSeverity": "C",
+    "product": { "name": "Advertising Solutions", "family": "Advertising", "subCategory": "SMB consultation" },
+    "icmId": null,
+    "icmUrl": null
+  },
+  "relatedCases": []
+}

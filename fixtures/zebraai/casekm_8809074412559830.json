@@ -1,0 +1,26 @@
+{
+  "case": {
+    "caseNumber": "8809074412559830",
+    "title": "Azure App Service — intermittent HTTP 503 and latency spikes (East US)"
+  },
+  "knowledgeArticles": [
+    {
+      "kmId": "417802",
+      "title": "Troubleshoot HTTP 503 errors in Azure App Service",
+      "url": "https://learn.microsoft.com/azure/app-service/troubleshoot-http-503",
+      "domain": "learn.microsoft.com",
+      "source": "CSS Wiki",
+      "relevance": "high",
+      "snippet": "HTTP 503 during platform events is often transient. Confirm health checks, enable automatic retries with exponential backoff, and consider scaling out or failing over to a paired region while the platform issue is mitigated..."
+    },
+    {
+      "kmId": "402515",
+      "title": "Configure geo-redundant failover for Azure App Service with Traffic Manager",
+      "url": "https://learn.microsoft.com/azure/app-service/manage-disaster-recovery",
+      "domain": "learn.microsoft.com",
+      "source": "Knowledge.com",
+      "relevance": "medium",
+      "snippet": "Use Azure Traffic Manager to route traffic to a healthy paired region during a regional impact. Combine with app-level retry patterns for resilient recovery..."
+    }
+  ]
+}

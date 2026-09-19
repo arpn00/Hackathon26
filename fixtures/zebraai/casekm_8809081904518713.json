@@ -1,0 +1,17 @@
+{
+  "case": {
+    "caseNumber": "8809081904518713",
+    "title": "Xbox Console — refund not received after cancellation"
+  },
+  "knowledgeArticles": [
+    {
+      "kmId": "312044",
+      "title": "Refund timelines and troubleshooting for Microsoft subscriptions",
+      "url": "https://support.microsoft.com/account-billing/refund-timelines",
+      "domain": "support.microsoft.com",
+      "source": "CSS Wiki",
+      "relevance": "high",
+      "snippet": "Refunds typically settle within 3–5 business days of the provider window. If Order History shows 'Refunded' but funds are not visible, re-trigger the refund and confirm the original payment method matches the order..."
+    }
+  ]
+}

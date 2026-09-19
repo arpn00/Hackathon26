@@ -1,0 +1,46 @@
+{
+  "seedCase": {
+    "caseNumber": "8809081904518713",
+    "title": "Xbox Console — refund not received after cancellation",
+    "issueDescription": "Customer cancelled an Xbox subscription and requested a refund; refund not reflected after 5 business days.",
+    "symptomText": "Refund not visible on original payment method; Order History shows 'Refunded'.",
+    "causeText": "Payment provider settlement delay compounded by a stale order-status cache.",
+    "rootCause": "Billing > Refunds > Settlement latency",
+    "currentSeverity": "C",
+    "product": { "name": "Xbox Console", "family": "Xbox", "subCategory": "Request a refund" },
+    "icmId": null,
+    "icmUrl": null
+  },
+  "relatedCases": [
+    {
+      "caseNumber": "8809081543384086",
+      "title": "Xbox refund delayed beyond 5 days",
+      "similarity": "high",
+      "resolutionText": "Confirmed order status 'Refunded' in Order History, then re-triggered the refund from the billing admin tool; funds settled within 24h. Advised customer of the 3–5 day provider window.",
+      "causeText": "Provider settlement window; no product defect.",
+      "rootCause": "Billing > Refunds > Settlement latency",
+      "csat": 5,
+      "currentSeverity": "C"
+    },
+    {
+      "caseNumber": "8809082348423393",
+      "title": "Refund not received — Xbox subscription cancellation",
+      "similarity": "high",
+      "resolutionText": "Verified payment method matched the original order; forced a refund status refresh; customer confirmed receipt next day.",
+      "causeText": "Stale order-status cache.",
+      "rootCause": "Billing > Refunds > Order status sync",
+      "csat": 4,
+      "currentSeverity": "C"
+    },
+    {
+      "caseNumber": "8809081908518572",
+      "title": "Xbox billing — refund inquiry",
+      "similarity": "medium",
+      "resolutionText": "Explained settlement timeline; no action needed — refund settled on day 4.",
+      "causeText": "Normal settlement window.",
+      "rootCause": "Billing > Refunds > Settlement latency",
+      "csat": 4,
+      "currentSeverity": "C"
+    }
+  ]
+}

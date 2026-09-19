@@ -1,10 +1,21 @@
 # Secrets / environment
 .env
 .env.*
+!.env.example
 *.key
 *.pem
 secrets.json
 appsettings.*.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # OS
 .DS_Store

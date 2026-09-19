@@ -1,0 +1,46 @@
+{
+  "seedCase": {
+    "caseNumber": "8809074412559830",
+    "title": "Azure App Service — intermittent HTTP 503 and latency spikes (East US)",
+    "issueDescription": "Production web app intermittently returns HTTP 503 with elevated latency in East US since 2025-09-15; customer escalating, revenue impact.",
+    "symptomText": "Intermittent 503 Service Unavailable; p95 latency up 4x; no recent customer deployment.",
+    "causeText": "Transient platform networking degradation on the App Service scale unit; not customer code.",
+    "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
+    "currentSeverity": "A",
+    "product": { "name": "Azure App Service", "family": "Azure", "subCategory": "Availability / 503" },
+    "icmId": "599372041",
+    "icmUrl": "https://portal.microsofticm.com/imp/v3/incidents/details/599372041"
+  },
+  "relatedCases": [
+    {
+      "caseNumber": "8809074410023115",
+      "title": "App Service 503s in East US after platform event",
+      "similarity": "high",
+      "resolutionText": "Correlated to platform networking incident on the scale unit. Enabled retry-with-backoff on the app's outbound calls and failed over to the paired region (West US) via Traffic Manager until the incident was mitigated; errors cleared. Confirmed no customer code change needed.",
+      "causeText": "Platform networking degradation; known incident.",
+      "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
+      "csat": 5,
+      "currentSeverity": "A"
+    },
+    {
+      "caseNumber": "8809074398871200",
+      "title": "Intermittent 503 / high latency — Azure Web App",
+      "similarity": "high",
+      "resolutionText": "Verified health-check endpoint, ruled out app deployment. Matched to active platform ICM; advised customer to enable geo-failover and app-level retries. Fully resolved once PG mitigated the incident.",
+      "causeText": "Regional platform networking incident.",
+      "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
+      "csat": 4,
+      "currentSeverity": "A"
+    },
+    {
+      "caseNumber": "8809074355012487",
+      "title": "Web app 503 spikes correlated to platform incident",
+      "similarity": "medium",
+      "resolutionText": "Scaled out instances and enabled retries as an interim mitigation; monitored until incident resolved. No code defect found.",
+      "causeText": "Platform-side transient errors.",
+      "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
+      "csat": 4,
+      "currentSeverity": "B"
+    }
+  ]
+}

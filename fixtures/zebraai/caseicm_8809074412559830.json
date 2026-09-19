@@ -1,0 +1,25 @@
+{
+  "case": {
+    "caseNumber": "8809074412559830",
+    "title": "Azure App Service — intermittent HTTP 503 and latency spikes (East US)"
+  },
+  "relatedIncidents": [
+    {
+      "incidentId": "599372041",
+      "title": "App Service — elevated 503/latency in East US (scale-unit networking)",
+      "summary": "A subset of App Service scale units in East US experienced transient networking degradation causing intermittent 503s and elevated latency.",
+      "incidentType": "PlatformOutage",
+      "isOutage": true,
+      "severity": "2",
+      "status": "Resolved",
+      "impactedRegions": "East US",
+      "impactStartDate": "2025-09-15T13:42:00Z",
+      "mitigateDate": "2025-09-15T16:05:00Z",
+      "resolveDate": "2025-09-15T18:20:00Z",
+      "owningTeamName": "Azure App Service / Networking",
+      "mitigation": "Rerouted affected scale-unit traffic and recycled degraded network nodes.",
+      "howFixed": "Root-caused to a faulty network node rotation; corrected the rotation and added a guard to prevent recurrence.",
+      "icmUrl": "https://portal.microsofticm.com/imp/v3/incidents/details/599372041"
+    }
+  ]
+}
