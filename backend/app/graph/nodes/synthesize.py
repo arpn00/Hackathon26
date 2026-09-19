@@ -7,7 +7,7 @@ number, a knowledge article id, or the related incident id.
 from __future__ import annotations
 
 from app.graph.nodes._llm import invoke_json
-from app.graph.state import PrecedentState
+from app.graph.state import PrecedentState, make_interaction
 
 SYSTEM_PROMPT = (
     "You are a senior Microsoft support engineer drafting a resolution. "
@@ -33,12 +33,19 @@ def synthesize_node(llm):
             "priorGaps": (state.get("self_check") or {}).get("gaps", []),
         }
         result = invoke_json(llm, SYSTEM_PROMPT, payload)
+        # Draft version = number of prior drafts + 1 (counts self-check and human revisions).
+        version = sum(
+            1 for i in state.get("interactions", []) if i.get("kind") == "draft"
+        ) + 1
         return {
             "draft": {
                 "plan": result.get("plan", []),
                 "reply": result.get("reply", ""),
                 "citations": result.get("citations", []),
-            }
+            },
+            "interactions": [
+                make_interaction("agent", "draft", f"Drafted resolution v{version}", revision=version)
+            ],
         }
 
     return _node

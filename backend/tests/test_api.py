@@ -50,6 +50,16 @@ def _client() -> TestClient:
     return TestClient(app)
 
 
+def _client_with_store(tmp_path) -> TestClient:
+    from app.store import ResolutionStore
+
+    zebra = MockZebraAIClient(get_settings().fixtures_dir)
+    graph = build_graph(zebra, RoutingFakeLLM(), checkpointer=MemorySaver(), max_retries=1)
+    store = ResolutionStore.open(tmp_path / "test.db")
+    app = create_app(runtime=Runtime(graph=graph, client=zebra, store=store))
+    return TestClient(app)
+
+
 def test_healthz() -> None:
     resp = _client().get("/healthz")
     assert resp.status_code == 200
@@ -125,3 +135,48 @@ def test_sparse_case_escalates() -> None:
     assert body["precedents"] == []
     assert body["kbArticles"] == []
     assert body["incident"] is None
+
+
+def test_resolve_returns_runid_and_interactions() -> None:
+    body = _client().post("/resolve", json={"caseNumber": FLAGSHIP}).json()
+    assert body["runId"] == body["threadId"]
+    kinds = [i["kind"] for i in body["interactions"]]
+    assert "route" in kinds
+    assert "draft" in kinds
+
+
+def test_review_reject_reroutes_with_reason() -> None:
+    client = _client()
+    thread_id = client.post("/resolve", json={"caseNumber": FLAGSHIP}).json()["threadId"]
+    body = client.post(
+        f"/resolve/{thread_id}/review",
+        json={"decision": "reject", "reason": "Add rollback steps."},
+    ).json()
+    assert body["status"] == "awaiting_review"
+    draft_turns = [i for i in body["interactions"] if i["kind"] == "draft"]
+    assert len(draft_turns) == 2
+    reject_turns = [i for i in body["interactions"] if i["kind"] == "reject"]
+    assert reject_turns and "Add rollback steps." in reject_turns[0]["detail"]
+
+
+def test_list_resolutions_indexes_runs(tmp_path) -> None:
+    client = _client_with_store(tmp_path)
+    thread_id = client.post("/resolve", json={"caseNumber": FLAGSHIP}).json()["threadId"]
+
+    listing = client.get("/resolve").json()
+    ids = [item["threadId"] for item in listing["items"]]
+    assert thread_id in ids
+    item = next(i for i in listing["items"] if i["threadId"] == thread_id)
+    assert item["caseNumber"] == FLAGSHIP
+    assert item["status"] == "awaiting_review"
+    assert item["route"] == "resolve"
+
+
+def test_feedback_persists_to_store(tmp_path) -> None:
+    client = _client_with_store(tmp_path)
+    resp = client.post(
+        "/feedback",
+        json={"experiment": "case_km", "runId": "run-9", "rating": 4, "note": "ok"},
+    )
+    assert resp.status_code == 200
+    assert resp.json()["status"] == "accepted"

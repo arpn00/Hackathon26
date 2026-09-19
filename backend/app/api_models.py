@@ -18,6 +18,7 @@ class ResolveRequest(_ApiBase):
 class ReviewRequest(_ApiBase):
     decision: Literal["approve", "edit", "reject"]
     edited_text: str | None = Field(default=None, alias="editedText")
+    reason: str | None = None
 
 
 class FeedbackRequest(_ApiBase):
@@ -35,6 +36,7 @@ class Draft(_ApiBase):
 
 class ResolveResponse(_ApiBase):
     thread_id: str = Field(serialization_alias="threadId")
+    run_id: str = Field(serialization_alias="runId")
     status: Literal["awaiting_review", "completed"]
     route: str | None = None
     confidence: str | None = None
@@ -45,6 +47,20 @@ class ResolveResponse(_ApiBase):
     precedents: list[dict[str, Any]] = []
     kb_articles: list[dict[str, Any]] = Field(default_factory=list, serialization_alias="kbArticles")
     incident: dict[str, Any] | None = None
+    interactions: list[dict[str, Any]] = []
+
+
+class ResolutionSummary(_ApiBase):
+    thread_id: str = Field(serialization_alias="threadId")
+    case_number: str | None = Field(default=None, serialization_alias="caseNumber")
+    status: str
+    route: str | None = None
+    confidence: str | None = None
+    updated_at: str | None = Field(default=None, serialization_alias="updatedAt")
+
+
+class ResolutionListResponse(_ApiBase):
+    items: list[ResolutionSummary] = []
 
 
 class FeedbackResponse(_ApiBase):

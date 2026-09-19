@@ -2,6 +2,7 @@
 
 Routes:
     POST   /resolve                    start a run; pauses for human review
+    GET    /resolve                    list recent resolutions (index)
     GET    /resolve/{threadId}         current state of a run
     POST   /resolve/{threadId}/review  resume with approve / edit / reject
     POST   /feedback                   send reviewer feedback to ZebraAI (flywheel)
@@ -23,6 +24,8 @@ from app.api_models import (
     FeedbackRequest,
     FeedbackResponse,
     HealthResponse,
+    ResolutionListResponse,
+    ResolutionSummary,
     ResolveRequest,
     ResolveResponse,
     ReviewRequest,
@@ -54,8 +57,9 @@ def _build_response(runtime: Runtime, thread_id: str) -> ResolveResponse:
         raise ThreadNotFoundError(thread_id)
     status = "awaiting_review" if snapshot.next else "completed"
     draft = values.get("draft")
-    return ResolveResponse(
+    response = ResolveResponse(
         thread_id=thread_id,
+        run_id=thread_id,
         status=status,
         route=values.get("route"),
         confidence=values.get("confidence"),
@@ -66,7 +70,17 @@ def _build_response(runtime: Runtime, thread_id: str) -> ResolveResponse:
         precedents=values.get("precedents", []),
         kb_articles=values.get("kb_articles", []),
         incident=values.get("incident"),
+        interactions=values.get("interactions", []),
     )
+    if runtime.store is not None:
+        runtime.store.upsert_resolution(
+            thread_id,
+            case_number=values.get("case_number"),
+            status=status,
+            route=response.route,
+            confidence=response.confidence,
+        )
+    return response
 
 
 def create_app(runtime: Runtime | None = None) -> FastAPI:
@@ -128,13 +142,35 @@ def create_app(runtime: Runtime | None = None) -> FastAPI:
     ) -> ResolveResponse:
         return _build_response(runtime, thread_id)
 
+    @app.get("/resolve", response_model=ResolutionListResponse)
+    async def list_resolves(
+        runtime: Runtime = Depends(_get_runtime),
+    ) -> ResolutionListResponse:
+        rows = runtime.store.list_resolutions() if runtime.store is not None else []
+        items = [
+            ResolutionSummary(
+                thread_id=row["thread_id"],
+                case_number=row.get("case_number"),
+                status=row.get("status", ""),
+                route=row.get("route"),
+                confidence=row.get("confidence"),
+                updated_at=row.get("updated_at"),
+            )
+            for row in rows
+        ]
+        return ResolutionListResponse(items=items)
+
     @app.post("/resolve/{thread_id}/review", response_model=ResolveResponse)
     async def review(
         thread_id: str,
         body: ReviewRequest,
         runtime: Runtime = Depends(_get_runtime),
     ) -> ResolveResponse:
-        resume = {"decision": body.decision, "edited_text": body.edited_text}
+        resume = {
+            "decision": body.decision,
+            "edited_text": body.edited_text,
+            "reason": body.reason,
+        }
         runtime.graph.invoke(Command(resume=resume), _config(thread_id))
         return _build_response(runtime, thread_id)
 
@@ -145,6 +181,10 @@ def create_app(runtime: Runtime | None = None) -> FastAPI:
         result = runtime.client.submit_feedback(
             body.experiment, body.run_id, body.rating, body.note
         )
+        if runtime.store is not None:
+            runtime.store.add_feedback(
+                body.experiment, body.run_id, body.rating, body.note
+            )
         return FeedbackResponse(status=result.get("status", "accepted"), detail=result)
 
     return app

@@ -44,6 +44,9 @@ class Settings(BaseSettings):
     cors_allowed_origins: str = "http://localhost:5173"
     self_check_max_retries: int = Field(default=1, ge=0)
 
+    # Persistence (checkpoints + resolutions/feedback index)
+    sqlite_path: Path = _REPO_ROOT / "backend" / "precedent.db"
+
     @property
     def cors_origins(self) -> list[str]:
         return [o.strip() for o in self.cors_allowed_origins.split(",") if o.strip()]

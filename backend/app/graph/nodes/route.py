@@ -8,7 +8,7 @@ resolution. Cases with no precedents / KB / incident are escalated.
 from __future__ import annotations
 
 from app.graph.nodes._llm import invoke_json
-from app.graph.state import PrecedentState
+from app.graph.state import PrecedentState, make_interaction
 
 SYSTEM_PROMPT = (
     "You are a triage reasoner for Microsoft customer support. "
@@ -28,19 +28,31 @@ SYSTEM_PROMPT = (
 
 def route_node(llm):
     def _node(state: PrecedentState) -> dict:
+        precedents = state.get("precedents", [])
+        kb_articles = state.get("kb_articles", [])
+        incident = state.get("incident")
         payload = {
             "seedCase": state.get("seed_case"),
-            "precedents": state.get("precedents", []),
-            "knowledgeArticles": state.get("kb_articles", []),
-            "incident": state.get("incident"),
+            "precedents": precedents,
+            "knowledgeArticles": kb_articles,
+            "incident": incident,
         }
         result = invoke_json(llm, SYSTEM_PROMPT, payload)
         route = result.get("route", "resolve")
+        confidence = result.get("confidence")
         deflection = result.get("outageDeflection") or None
+        retrieval = (
+            f"Reviewed {len(precedents)} precedent(s), {len(kb_articles)} knowledge "
+            f"article(s), {'1 related incident' if incident else 'no related incident'}"
+        )
         return {
             "route": route,
-            "confidence": result.get("confidence"),
+            "confidence": confidence,
             "outage_deflection": deflection if route == "deflect" else None,
+            "interactions": [
+                make_interaction("agent", "retrieve", retrieval),
+                make_interaction("agent", "route", f"Routed → {route} (confidence: {confidence})"),
+            ],
         }
 
     return _node

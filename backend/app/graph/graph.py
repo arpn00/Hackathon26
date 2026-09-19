@@ -4,7 +4,9 @@ Flow:
     seed -> (recall | kb | icm)  [parallel fan-out]
          -> route -> synthesize -> selfcheck
          -> (loop back to synthesize while 'revise' and under the retry cap)
-         -> human_gate  [interrupt() — pauses for reviewer approval/edit]
+         -> human_gate  [interrupt() — pauses for reviewer approval/edit/reject]
+         -> (reject loops back to synthesize with the reviewer's reason as a gap,
+             up to the human-revision cap; approve/edit -> finalize)
          -> finalize -> END
 
 The graph is client- and model-injected so tests can wire a mock ZebraAI client and a
@@ -26,7 +28,7 @@ from app.graph.nodes.route import route_node
 from app.graph.nodes.seed import seed_node
 from app.graph.nodes.selfcheck import selfcheck_node
 from app.graph.nodes.synthesize import synthesize_node
-from app.graph.state import PrecedentState
+from app.graph.state import PrecedentState, make_interaction
 from app.zebraai.client import ZebraAIClient
 
 
@@ -41,7 +43,28 @@ def _human_gate_node(state: PrecedentState) -> dict:
         }
     )
     review = decision if isinstance(decision, dict) else {"decision": "approve"}
-    return {"review": review}
+    verdict = review.get("decision", "approve")
+    reason = (review.get("reason") or "").strip()
+
+    if verdict == "reject":
+        detail = f"Reviewer rejected the draft — {reason}" if reason else "Reviewer rejected the draft"
+    elif verdict == "edit":
+        detail = "Reviewer edited the reply before approving"
+    else:
+        detail = "Reviewer approved the draft"
+
+    updates: dict[str, Any] = {
+        "review": review,
+        "interactions": [make_interaction("human", verdict, detail)],
+    }
+
+    if verdict == "reject":
+        # Feed the reviewer's reason back into synthesize as a gap and count the revision.
+        gaps = [reason] if reason else ["Reviewer requested a revision"]
+        updates["self_check"] = {"verdict": "revise", "gaps": gaps}
+        updates["human_revisions"] = state.get("human_revisions", 0) + 1
+
+    return updates
 
 
 def _finalize_node(state: PrecedentState) -> dict:
@@ -60,6 +83,7 @@ def build_graph(
     *,
     checkpointer: Any | None = None,
     max_retries: int = 1,
+    max_human_revisions: int = 2,
 ):
     builder = StateGraph(PrecedentState)
 
@@ -98,7 +122,20 @@ def build_graph(
         {"synthesize": "synthesize", "human_gate": "human_gate"},
     )
 
-    builder.add_edge("human_gate", "finalize")
+    def _after_human_gate(state: PrecedentState) -> str:
+        review = state.get("review") or {}
+        if (
+            review.get("decision") == "reject"
+            and state.get("human_revisions", 0) <= max_human_revisions
+        ):
+            return "synthesize"
+        return "finalize"
+
+    builder.add_conditional_edges(
+        "human_gate",
+        _after_human_gate,
+        {"synthesize": "synthesize", "finalize": "finalize"},
+    )
     builder.add_edge("finalize", END)
 
     return builder.compile(checkpointer=checkpointer or MemorySaver())

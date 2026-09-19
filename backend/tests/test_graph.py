@@ -64,3 +64,48 @@ def test_graph_applies_reviewer_edit() -> None:
         config,
     )
     assert final["final_reply"] == "Custom reply."
+
+
+def test_graph_reject_loops_back_to_synthesize_with_reason() -> None:
+    graph = _build()
+    config = {"configurable": {"thread_id": "t-3"}}
+
+    graph.invoke(initial_state(FLAGSHIP), config)
+    # Reject once with a reason — should re-draft and pause again.
+    paused = graph.invoke(
+        Command(resume={"decision": "reject", "reason": "Add rollback steps."}),
+        config,
+    )
+    assert "__interrupt__" in paused
+
+    state = graph.get_state(config)
+    assert state.values["human_revisions"] == 1
+    # The reviewer's reason was recorded on the human turn.
+    reject_turns = [i for i in state.values["interactions"] if i["kind"] == "reject"]
+    assert reject_turns and "Add rollback steps." in reject_turns[0]["detail"]
+    # Two drafts recorded (v1 + revision).
+    draft_turns = [i for i in state.values["interactions"] if i["kind"] == "draft"]
+    assert len(draft_turns) == 2
+
+    final = graph.invoke(Command(resume={"decision": "approve"}), config)
+    assert final["final_reply"].startswith("Based on similar")
+
+
+def test_graph_records_ordered_interactions() -> None:
+    graph = _build()
+    config = {"configurable": {"thread_id": "t-4"}}
+
+    graph.invoke(initial_state(FLAGSHIP), config)
+    final = graph.invoke(Command(resume={"decision": "approve"}), config)
+
+    interactions = final["interactions"]
+    kinds = [i["kind"] for i in interactions]
+    # Agent milestones then the human turn.
+    assert "retrieve" in kinds
+    assert "route" in kinds
+    assert "draft" in kinds
+    assert "selfcheck" in kinds
+    assert interactions[-1]["actor"] == "human"
+    assert interactions[-1]["kind"] == "approve"
+    # Every entry carries a timestamp for ordering on the client.
+    assert all("ts" in i for i in interactions)

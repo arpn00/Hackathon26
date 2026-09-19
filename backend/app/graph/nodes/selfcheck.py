@@ -7,7 +7,7 @@ retry counter is incremented; the graph decides whether another synthesize pass 
 from __future__ import annotations
 
 from app.graph.nodes._llm import invoke_json
-from app.graph.state import PrecedentState
+from app.graph.state import PrecedentState, make_interaction
 
 SYSTEM_PROMPT = (
     "You are a strict reviewer. Check the draft reply and plan against the evidence.\n"
@@ -37,6 +37,9 @@ def selfcheck_node(llm):
         return {
             "self_check": {"verdict": verdict, "gaps": gaps},
             "retry_count": retry_count,
+            "interactions": [
+                make_interaction("agent", "selfcheck", f"Self-check verdict: {verdict}")
+            ],
         }
 
     return _node
