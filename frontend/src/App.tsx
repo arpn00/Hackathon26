@@ -21,6 +21,7 @@ import { ReviewBar } from "./components/ReviewBar";
 import { FeedbackBar } from "./components/FeedbackBar";
 import { RouteBadge, ConfidenceBadge } from "./components/RouteBadge";
 import { LoadingState, ErrorState, EmptyState } from "./components/States";
+import { GuidedWorkspace } from "./components/GuidedWorkspace";
 import { useResolveRun } from "./hooks/useResolveRun";
 import { api } from "./api/client";
 
@@ -86,9 +87,10 @@ const useStyles = makeStyles({
 
 export function App() {
   const styles = useStyles();
-  const { state, start, open, review } = useResolveRun();
+  const { state, start, open, review, reset } = useResolveRun();
   const [mode, setMode] = useState<string>();
   const [refreshKey, setRefreshKey] = useState(0);
+  const [selectedCase, setSelectedCase] = useState<string | null>(null);
 
   useEffect(() => {
     api
@@ -104,19 +106,36 @@ export function App() {
     }
   }, [state.phase]);
 
+  // Pick a case: open the guided workspace and clear any prior run.
+  const selectCase = (caseNumber: string) => {
+    const trimmed = caseNumber.trim();
+    if (!trimmed) return;
+    reset();
+    setSelectedCase(trimmed);
+  };
+
+  // Return to the home screen (queue + hero), clearing any selection or run.
+  const goHome = () => {
+    reset();
+    setSelectedCase(null);
+  };
+
   const run = state.run;
   const busy = state.phase === "resolving";
   const activeCase =
-    (run?.seedCase?.caseNumber as string | undefined) ?? undefined;
+    selectedCase ?? (run?.seedCase?.caseNumber as string | undefined) ?? undefined;
+  const showResolution = busy || run !== null;
+  const showGuided = !showResolution && state.phase !== "error" && selectedCase !== null;
+  const showEmpty = !showResolution && state.phase !== "error" && selectedCase === null;
 
   return (
     <div className={styles.page}>
-      <AppHeader mode={mode} />
+      <AppHeader mode={mode} onHome={goHome} />
 
       <div className={styles.body}>
         <aside className={styles.leftCol}>
           <Card className={styles.card}>
-            <CaseGallery onRun={start} activeCaseNumber={activeCase} disabled={busy} />
+            <CaseGallery onRun={selectCase} activeCaseNumber={activeCase} disabled={busy} />
           </Card>
           <Card className={styles.card}>
             <RecentResolutions refreshKey={refreshKey} onOpen={open} />
@@ -124,10 +143,19 @@ export function App() {
         </aside>
 
         <main className={styles.mainCol}>
-          {state.phase === "idle" ? (
+          {showEmpty ? (
             <Card className={styles.card}>
-              <EmptyState onRun={start} disabled={busy} />
+              <EmptyState onRun={selectCase} disabled={busy} />
             </Card>
+          ) : null}
+
+          {showGuided ? (
+            <GuidedWorkspace
+              key={selectedCase as string}
+              caseNumber={selectedCase as string}
+              onSuggest={start}
+              busy={busy}
+            />
           ) : null}
 
           {state.phase === "error" ? (

@@ -21,6 +21,10 @@ SPARSE = "8809082348468911"
 class RoutingFakeLLM:
     def invoke(self, messages):
         system = str(messages[0].content)
+        if "case assistant" in system:
+            # Chat endpoint: plain-text answer grounded on the evidence block.
+            question = str(messages[-1].content)
+            return SimpleNamespace(content=f"Based on the gathered evidence: {question}")
         payload_in = json.loads(str(messages[1].content))
         if "triage reasoner" in system:
             has_evidence = (
@@ -45,8 +49,9 @@ class RoutingFakeLLM:
 
 def _client() -> TestClient:
     zebra = MockZebraAIClient(get_settings().fixtures_dir)
-    graph = build_graph(zebra, RoutingFakeLLM(), checkpointer=MemorySaver(), max_retries=1)
-    app = create_app(runtime=Runtime(graph=graph, client=zebra))
+    llm = RoutingFakeLLM()
+    graph = build_graph(zebra, llm, checkpointer=MemorySaver(), max_retries=1)
+    app = create_app(runtime=Runtime(graph=graph, client=zebra, llm=llm))
     return TestClient(app)
 
 
@@ -54,9 +59,10 @@ def _client_with_store(tmp_path) -> TestClient:
     from app.store import ResolutionStore
 
     zebra = MockZebraAIClient(get_settings().fixtures_dir)
-    graph = build_graph(zebra, RoutingFakeLLM(), checkpointer=MemorySaver(), max_retries=1)
+    llm = RoutingFakeLLM()
+    graph = build_graph(zebra, llm, checkpointer=MemorySaver(), max_retries=1)
     store = ResolutionStore.open(tmp_path / "test.db")
-    app = create_app(runtime=Runtime(graph=graph, client=zebra, store=store))
+    app = create_app(runtime=Runtime(graph=graph, client=zebra, store=store, llm=llm))
     return TestClient(app)
 
 
@@ -180,3 +186,54 @@ def test_feedback_persists_to_store(tmp_path) -> None:
     )
     assert resp.status_code == 200
     assert resp.json()["status"] == "accepted"
+
+
+def test_step_precedents_returns_seed_and_precedents() -> None:
+    resp = _client().post("/steps/precedents", json={"caseNumber": FLAGSHIP})
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["seedCase"]["caseNumber"] == FLAGSHIP
+    assert len(body["precedents"]) == 3
+
+
+def test_step_precedents_unknown_case_returns_404() -> None:
+    resp = _client().post("/steps/precedents", json={"caseNumber": "0000000000000000"})
+    assert resp.status_code == 404
+    assert resp.json()["error"]["code"] == "case_not_found"
+
+
+def test_step_kb_returns_articles() -> None:
+    resp = _client().post("/steps/kb", json={"caseNumber": FLAGSHIP})
+    assert resp.status_code == 200
+    assert isinstance(resp.json()["kbArticles"], list)
+
+
+def test_step_incidents_returns_incident_field() -> None:
+    resp = _client().post("/steps/incidents", json={"caseNumber": FLAGSHIP})
+    assert resp.status_code == 200
+    assert "incident" in resp.json()
+
+
+def test_step_kb_sparse_case_is_empty() -> None:
+    resp = _client().post("/steps/kb", json={"caseNumber": SPARSE})
+    assert resp.status_code == 200
+    assert resp.json()["kbArticles"] == []
+
+
+def test_chat_answers_from_evidence() -> None:
+    resp = _client().post(
+        "/chat",
+        json={
+            "caseNumber": FLAGSHIP,
+            "question": "What is the likely fix?",
+            "context": {"precedents": [{"caseNumber": "123", "title": "prior"}]},
+        },
+    )
+    assert resp.status_code == 200
+    assert "What is the likely fix?" in resp.json()["reply"]
+
+
+def test_chat_requires_question() -> None:
+    resp = _client().post("/chat", json={"caseNumber": FLAGSHIP, "question": ""})
+    assert resp.status_code == 422
+

@@ -25,6 +25,7 @@ class Runtime:
     graph: Any
     client: ZebraAIClient
     store: ResolutionStore | None = None
+    llm: Any | None = None
 
 
 _runtime: Runtime | None = None
@@ -46,7 +47,7 @@ def build_runtime(settings: Settings | None = None) -> Runtime:
         checkpointer=checkpointer,
         max_retries=settings.self_check_max_retries,
     )
-    return Runtime(graph=graph, client=client, store=store)
+    return Runtime(graph=graph, client=client, store=store, llm=llm)
 
 
 def get_runtime() -> Runtime:

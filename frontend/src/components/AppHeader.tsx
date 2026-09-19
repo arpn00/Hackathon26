@@ -18,6 +18,17 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     gap: tokens.spacingHorizontalM,
+    backgroundColor: "transparent",
+    borderTopStyle: "none",
+    borderRightStyle: "none",
+    borderBottomStyle: "none",
+    borderLeftStyle: "none",
+    padding: 0,
+    cursor: "pointer",
+    textAlign: "left",
+    ":hover": {
+      opacity: 0.85,
+    },
   },
   icon: {
     color: tokens.colorBrandForeground1,
@@ -57,13 +68,14 @@ const useStyles = makeStyles({
 
 interface AppHeaderProps {
   mode?: string;
+  onHome?: () => void;
 }
 
-export function AppHeader({ mode }: AppHeaderProps) {
+export function AppHeader({ mode, onHome }: AppHeaderProps) {
   const styles = useStyles();
   return (
     <header className={styles.header}>
-      <div className={styles.brand}>
+      <button type="button" className={styles.brand} onClick={onHome} aria-label="Go to home">
         <span className={styles.icon}>
           <BrainCircuit24Filled />
         </span>
@@ -75,7 +87,7 @@ export function AppHeader({ mode }: AppHeaderProps) {
             Support workspace · human-in-the-loop
           </Text>
         </div>
-      </div>
+      </button>
       <div className={styles.right}>
         <div className={styles.meta}>
           <Badge appearance="tint" color="informative">

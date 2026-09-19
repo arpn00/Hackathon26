@@ -51,6 +51,37 @@ export interface FeedbackResponse {
   detail: Record<string, unknown> | null;
 }
 
+export interface PrecedentsStep {
+  seedCase: Record<string, unknown> | null;
+  precedents: Array<Record<string, unknown>>;
+}
+
+export interface KbStep {
+  kbArticles: Array<Record<string, unknown>>;
+}
+
+export interface IncidentStep {
+  incident: Record<string, unknown> | null;
+}
+
+export interface ChatTurn {
+  role: "user" | "assistant";
+  content: string;
+}
+
+export interface ChatContext {
+  seedCase?: Record<string, unknown> | null;
+  precedents?: Array<Record<string, unknown>>;
+  kbArticles?: Array<Record<string, unknown>>;
+  incident?: Record<string, unknown> | null;
+  draft?: Record<string, unknown> | null;
+}
+
+export interface ChatResponse {
+  reply: string;
+}
+
+
 export interface HealthResponse {
   status: string;
   mode: string;

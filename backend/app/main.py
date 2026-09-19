@@ -5,6 +5,10 @@ Routes:
     GET    /resolve                    list recent resolutions (index)
     GET    /resolve/{threadId}         current state of a run
     POST   /resolve/{threadId}/review  resume with approve / edit / reject
+    POST   /steps/precedents           recall similar prior cases (guided step)
+    POST   /steps/kb                   find knowledge articles (guided step)
+    POST   /steps/incidents            check related live incidents (guided step)
+    POST   /chat                       grounded Q&A over gathered evidence
     POST   /feedback                   send reviewer feedback to ZebraAI (flywheel)
     GET    /healthz                    liveness + mode
 """
@@ -20,18 +24,26 @@ from langgraph.types import Command
 
 from app.agent import Runtime, get_runtime
 from app.api_models import (
+    ChatRequest,
+    ChatResponse,
     Draft,
     FeedbackRequest,
     FeedbackResponse,
     HealthResponse,
+    IncidentStepResponse,
+    KbStepResponse,
+    PrecedentsStepResponse,
     ResolutionListResponse,
     ResolutionSummary,
     ResolveRequest,
     ResolveResponse,
     ReviewRequest,
+    StepRequest,
 )
 from app.config import get_settings
 from app.graph.state import initial_state
+from app.services.chat import answer_question
+from app.services.steps import check_incidents, find_kb, recall_precedents
 from app.zebraai.client import FixtureNotFoundError, UnknownExperimentError
 
 
@@ -135,6 +147,42 @@ def create_app(runtime: Runtime | None = None) -> FastAPI:
         thread_id = uuid.uuid4().hex
         runtime.graph.invoke(initial_state(body.case_number), _config(thread_id))
         return _build_response(runtime, thread_id)
+
+    @app.post("/steps/precedents", response_model=PrecedentsStepResponse)
+    async def step_precedents(
+        body: StepRequest, runtime: Runtime = Depends(_get_runtime)
+    ) -> PrecedentsStepResponse:
+        data = recall_precedents(runtime.client, body.case_number)
+        return PrecedentsStepResponse(
+            seed_case=data.get("seed_case"), precedents=data.get("precedents", [])
+        )
+
+    @app.post("/steps/kb", response_model=KbStepResponse)
+    async def step_kb(
+        body: StepRequest, runtime: Runtime = Depends(_get_runtime)
+    ) -> KbStepResponse:
+        data = find_kb(runtime.client, body.case_number)
+        return KbStepResponse(kb_articles=data.get("kb_articles", []))
+
+    @app.post("/steps/incidents", response_model=IncidentStepResponse)
+    async def step_incidents(
+        body: StepRequest, runtime: Runtime = Depends(_get_runtime)
+    ) -> IncidentStepResponse:
+        data = check_incidents(runtime.client, body.case_number)
+        return IncidentStepResponse(incident=data.get("incident"))
+
+    @app.post("/chat", response_model=ChatResponse)
+    async def chat(
+        body: ChatRequest, runtime: Runtime = Depends(_get_runtime)
+    ) -> ChatResponse:
+        reply = answer_question(
+            runtime.llm,
+            case_number=body.case_number,
+            question=body.question,
+            history=[m.model_dump() for m in body.history],
+            evidence=body.context.model_dump(by_alias=True),
+        )
+        return ChatResponse(reply=reply)
 
     @app.get("/resolve/{thread_id}", response_model=ResolveResponse)
     async def get_resolve(

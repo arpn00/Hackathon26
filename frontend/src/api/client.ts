@@ -1,6 +1,12 @@
 import type {
+  ChatContext,
+  ChatResponse,
+  ChatTurn,
   FeedbackResponse,
   HealthResponse,
+  IncidentStep,
+  KbStep,
+  PrecedentsStep,
   ResolutionListResponse,
   ResolveResponse,
   ReviewDecision,
@@ -83,5 +89,34 @@ export const api = {
     request<FeedbackResponse>("/feedback", {
       method: "POST",
       body: JSON.stringify({ experiment, runId, rating, note }),
+    }),
+
+  stepPrecedents: (caseNumber: string) =>
+    request<PrecedentsStep>("/steps/precedents", {
+      method: "POST",
+      body: JSON.stringify({ caseNumber }),
+    }),
+
+  stepKb: (caseNumber: string) =>
+    request<KbStep>("/steps/kb", {
+      method: "POST",
+      body: JSON.stringify({ caseNumber }),
+    }),
+
+  stepIncidents: (caseNumber: string) =>
+    request<IncidentStep>("/steps/incidents", {
+      method: "POST",
+      body: JSON.stringify({ caseNumber }),
+    }),
+
+  chat: (
+    caseNumber: string,
+    question: string,
+    history: ChatTurn[],
+    context: ChatContext,
+  ) =>
+    request<ChatResponse>("/chat", {
+      method: "POST",
+      body: JSON.stringify({ caseNumber, question, history, context }),
     }),
 };

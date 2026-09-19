@@ -15,6 +15,50 @@ class ResolveRequest(_ApiBase):
     case_number: str = Field(alias="caseNumber", min_length=1)
 
 
+class StepRequest(_ApiBase):
+    case_number: str = Field(alias="caseNumber", min_length=1)
+
+
+class PrecedentsStepResponse(_ApiBase):
+    seed_case: dict[str, Any] | None = Field(default=None, serialization_alias="seedCase")
+    precedents: list[dict[str, Any]] = []
+
+
+class KbStepResponse(_ApiBase):
+    kb_articles: list[dict[str, Any]] = Field(
+        default_factory=list, serialization_alias="kbArticles"
+    )
+
+
+class IncidentStepResponse(_ApiBase):
+    incident: dict[str, Any] | None = None
+
+
+class ChatMessage(_ApiBase):
+    role: Literal["user", "assistant"]
+    content: str
+
+
+class ChatContext(_ApiBase):
+    seed_case: dict[str, Any] | None = Field(default=None, alias="seedCase")
+    precedents: list[dict[str, Any]] = []
+    kb_articles: list[dict[str, Any]] = Field(default_factory=list, alias="kbArticles")
+    incident: dict[str, Any] | None = None
+    draft: dict[str, Any] | None = None
+
+
+class ChatRequest(_ApiBase):
+    case_number: str = Field(alias="caseNumber", min_length=1)
+    question: str = Field(min_length=1)
+    history: list[ChatMessage] = []
+    context: ChatContext = Field(default_factory=ChatContext)
+
+
+class ChatResponse(_ApiBase):
+    reply: str
+
+
+
 class ReviewRequest(_ApiBase):
     decision: Literal["approve", "edit", "reject"]
     edited_text: str | None = Field(default=None, alias="editedText")
