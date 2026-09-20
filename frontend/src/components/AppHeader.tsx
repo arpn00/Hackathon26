@@ -1,4 +1,4 @@
-import { makeStyles, tokens, Text, Badge, Avatar, Divider } from "@fluentui/react-components";
+import { makeStyles, tokens, Text, Avatar } from "@fluentui/react-components";
 import { BrainCircuit24Filled } from "@fluentui/react-icons";
 
 const useStyles = makeStyles({
@@ -43,11 +43,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     gap: tokens.spacingHorizontalL,
   },
-  meta: {
-    display: "flex",
-    alignItems: "center",
-    gap: tokens.spacingHorizontalS,
-  },
   persona: {
     display: "flex",
     alignItems: "center",
@@ -61,9 +56,6 @@ const useStyles = makeStyles({
   role: {
     color: tokens.colorNeutralForeground3,
   },
-  vDivider: {
-    height: "28px",
-  },
 });
 
 interface AppHeaderProps {
@@ -71,7 +63,7 @@ interface AppHeaderProps {
   onHome?: () => void;
 }
 
-export function AppHeader({ mode, onHome }: AppHeaderProps) {
+export function AppHeader({ onHome }: AppHeaderProps) {
   const styles = useStyles();
   return (
     <header className={styles.header}>
@@ -89,17 +81,6 @@ export function AppHeader({ mode, onHome }: AppHeaderProps) {
         </div>
       </button>
       <div className={styles.right}>
-        <div className={styles.meta}>
-          <Badge appearance="tint" color="informative">
-            Powered by ZebraAI
-          </Badge>
-          {mode ? (
-            <Badge appearance="outline" color={mode === "live" ? "success" : "subtle"}>
-              {mode === "live" ? "Live data" : "Synthetic data"}
-            </Badge>
-          ) : null}
-        </div>
-        <Divider vertical className={styles.vDivider} />
         <div className={styles.persona}>
           <div className={styles.personaText}>
             <Text size={200} weight="semibold">

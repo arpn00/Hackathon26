@@ -49,11 +49,11 @@ export interface DemoCase {
 export const DEMO_CASES: DemoCase[] = [
   {
     caseNumber: "8809074412559830",
-    title: "Azure App Service: intermittent HTTP 503 & latency spikes",
+    title: "Azure App Service: intermittent HTTP 503/502 & latency on checkout API",
     product: "Azure App Service",
     severity: "Sev A",
     summary:
-      "Customer in East US reports intermittent 503s and latency spikes. Rich precedent history and a related incident exist.",
+      "Revenue-critical checkout API in East US throws intermittent 503/502s, latency spikes, and sporadic SQL timeouts after an autoscale event and a plan-tier change. Looks like an app or database bug at first; rich precedents, KB, and a resolved platform incident point to the real root cause.",
     customer: "Contoso Ltd. · Premier",
     channel: "Web portal",
     sla: "SLA 1h 12m",
@@ -64,11 +64,11 @@ export const DEMO_CASES: DemoCase[] = [
     accent: "danger",
     details: {
       issueDescription:
-        "Production web app returns intermittent HTTP 503 responses and P95 latency spikes (up to 8s) for ~10% of requests during peak hours. Customer reports no recent deployment. Impact began ~26h ago and correlates with an autoscale event.",
+        "Contoso's production checkout API (revenue-critical, ~$38K/hour GMV) intermittently returns HTTP 503 and 502 with P95 latency spikes up to 8s for ~12% of requests in East US. A subset of requests also hit SQL connection timeouts, and it worsens at peak. Impact began ~26h ago, right after an autoscale event and a customer-initiated App Service plan-tier change, so the customer suspects their own change or a DDoS. No app exceptions in the logs; failures surface at the ingress/platform layer.",
       causeText:
-        "Suspected platform-side capacity throttling on the App Service plan during scale-out; instances briefly unhealthy while warming up.",
+        "Suspected transient platform networking degradation on the East US App Service scale unit while instances flap health probes on scale-out. The plan-tier change and autoscale appear to be coincidences, not the cause.",
       rootCause:
-        "Azure / App Service / Availability, Performance, and Application Crashes / HTTP 503 - Service Unavailable",
+        "Azure / App Service / Availability, Performance, and Application Crashes / HTTP 503 & 502 - Service Unavailable",
       currentQueue: "Azure App Service: Availability (Tier 2)",
       caseAge: "1d 2h (26h)",
       createdOn: "2026-09-18 09:14 UTC",
@@ -84,19 +84,19 @@ export const DEMO_CASES: DemoCase[] = [
           author: "Priya N.",
           role: "L1 Front-line",
           timestamp: "18 Sep, 09:41 UTC",
-          text: "Customer opened via portal at Sev B. Confirmed 503s in App Insights failures blade. Collected correlation IDs and time window. Advised against redeploy. Escalating to Tier 2; impact widening.",
+          text: "Customer opened via portal at Sev B, worried their plan-tier change or a DDoS caused this. Confirmed 503/502s in the App Insights failures blade with no matching app exceptions. Collected correlation IDs and the time window. Advised against another redeploy. Escalating to Tier 2; impact widening at peak.",
         },
         {
           author: "Marco L.",
           role: "Tier 2 Engineer (prior owner)",
           timestamp: "18 Sep, 15:20 UTC",
-          text: "Reproduced during 14:00–15:00 peak. Ruled out app code; no recent deploy, same behavior on staging slot. Health check shows instances flapping on scale-out. Raised ICM to platform team, requested capacity review. Bumped to Sev A after second outage window.",
+          text: "Reproduced during the 14:00-15:00 peak. Ruled out app code: no recent deploy and identical behavior on the staging slot with the prior build. Checked SQL, which is healthy (no throttling, no failover), so the connection timeouts look like a downstream symptom, not the cause. Health check shows instances flapping on scale-out. Raised an ICM to the platform team and requested a capacity/networking review. Bumped to Sev A after a second impact window.",
         },
         {
           author: "On-call handoff",
           role: "Shift transfer",
           timestamp: "19 Sep, 00:05 UTC",
-          text: "Overnight handover: awaiting platform capacity confirmation. Customer engaged and calm but wants RCA by EOD. Next step: confirm mitigation (scale-out min instances) and validate with customer during next peak. Precedents from prior 503 cases likely apply.",
+          text: "Overnight handover: awaiting platform confirmation on the scale-unit networking. Customer is engaged and calm but wants an RCA and a resilience plan by EOD. Next step: confirm the related platform incident, propose app-level retries plus Traffic Manager geo-failover, and validate during the next peak. Prior 503/502 precedents look like a strong match.",
         },
       ],
     },

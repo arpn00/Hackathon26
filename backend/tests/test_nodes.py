@@ -34,12 +34,12 @@ def test_seed_rejects_empty() -> None:
 def test_recall_flagship(client: MockZebraAIClient) -> None:
     out = recall_node(client)({"case_number": FLAGSHIP})
     assert out["seed_case"]["caseNumber"] == FLAGSHIP
-    assert len(out["precedents"]) == 3
+    assert len(out["precedents"]) == 4
 
 
 def test_kb_flagship(client: MockZebraAIClient) -> None:
     out = kb_node(client)({"case_number": FLAGSHIP})
-    assert len(out["kb_articles"]) == 2
+    assert len(out["kb_articles"]) == 4
 
 
 def test_icm_flagship_is_outage(client: MockZebraAIClient) -> None:

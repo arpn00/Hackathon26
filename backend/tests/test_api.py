@@ -79,7 +79,7 @@ def test_resolve_pauses_for_review() -> None:
     assert body["status"] == "awaiting_review"
     assert body["route"] == "resolve"
     assert body["draft"]["reply"].startswith("Based on similar")
-    assert len(body["precedents"]) == 3
+    assert len(body["precedents"]) == 4
     assert body["seedCase"]["caseNumber"] == FLAGSHIP
     assert body["threadId"]
 
@@ -193,7 +193,7 @@ def test_step_precedents_returns_seed_and_precedents() -> None:
     assert resp.status_code == 200
     body = resp.json()
     assert body["seedCase"]["caseNumber"] == FLAGSHIP
-    assert len(body["precedents"]) == 3
+    assert len(body["precedents"]) == 4
 
 
 def test_step_precedents_unknown_case_returns_404() -> None:

@@ -713,7 +713,10 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
                 icon={
                   c.state.status === "loading" ? <Spinner size="tiny" /> : undefined
                 }
-                onClick={() => void c.run()}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  void c.run();
+                }}
               >
                 {c.state.status === "loading"
                   ? "Running…"

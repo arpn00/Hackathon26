@@ -1,46 +1,57 @@
 {
   "seedCase": {
     "caseNumber": "8809074412559830",
-    "title": "Azure App Service — intermittent HTTP 503 and latency spikes (East US)",
-    "issueDescription": "Production web app intermittently returns HTTP 503 with elevated latency in East US since 2025-09-15; customer escalating, revenue impact.",
-    "symptomText": "Intermittent 503 Service Unavailable; p95 latency up 4x; no recent customer deployment.",
-    "causeText": "Transient platform networking degradation on the App Service scale unit; not customer code.",
-    "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
+    "title": "Azure App Service: intermittent HTTP 503/502 and latency spikes on revenue-critical checkout API (East US)",
+    "issueDescription": "Contoso's production checkout API (revenue-critical, ~$38K/hour GMV) intermittently returns HTTP 503 and 502 responses with P95 latency spikes up to 8s for roughly 12% of requests in East US. Symptoms are erratic: a subset of requests also hit SQL connection timeouts, and the pattern worsens during traffic peaks. Impact began ~26h ago, shortly after an autoscale event and a customer-initiated App Service plan tier change, so the customer initially suspected their own change or a possible DDoS attack. No application exceptions appear in the app logs; failures surface at the ingress/platform layer. CritSit raised with executive escalation; customer is demanding a root-cause analysis and a resilience plan.",
+    "symptomText": "Intermittent 503/502 at the ingress layer; P95 latency 4-8x baseline; sporadic SQL connection timeouts; no app-level exceptions; instances flapping health-check probes on scale-out; no recent application deployment.",
+    "causeText": "Transient platform networking degradation on the East US App Service scale unit (confirmed via a resolved platform incident), not customer code and not the plan-tier change. Health probes intermittently failed during a network node rotation, so healthy instances were pulled from rotation, amplifying 503/502s and downstream SQL timeouts.",
+    "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation (scale-unit node rotation)",
     "currentSeverity": "A",
-    "product": { "name": "Azure App Service", "family": "Azure", "subCategory": "Availability / 503" },
+    "product": { "name": "Azure App Service", "family": "Azure", "subCategory": "Availability / 503 & 502" },
     "icmId": "599372041",
     "icmUrl": "https://portal.microsofticm.com/imp/v3/incidents/details/599372041"
   },
   "relatedCases": [
     {
       "caseNumber": "8809074410023115",
-      "title": "App Service 503s in East US after platform event",
+      "title": "Checkout API 503s in East US traced to platform scale-unit event",
       "similarity": "high",
-      "resolutionText": "Correlated to platform networking incident on the scale unit. Enabled retry-with-backoff on the app's outbound calls and failed over to the paired region (West US) via Traffic Manager until the incident was mitigated; errors cleared. Confirmed no customer code change needed.",
-      "causeText": "Platform networking degradation; known incident.",
+      "resolutionText": "Correlated the 503 pattern to a platform networking incident on the East US scale unit using the request-failure timeline. Confirmed no customer code change was needed. Enabled retry-with-backoff on the app's outbound calls and failed traffic over to the paired West US region via Azure Traffic Manager until the platform incident was mitigated; error rate returned to baseline within 15 minutes of failover. Delivered an RCA citing the platform ICM.",
+      "causeText": "Platform networking degradation on the scale unit; known incident, not customer code.",
       "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
       "csat": 5,
       "currentSeverity": "A"
     },
     {
       "caseNumber": "8809074398871200",
-      "title": "Intermittent 503 / high latency — Azure Web App",
+      "title": "Intermittent 503 and high latency on Azure Web App after autoscale",
       "similarity": "high",
-      "resolutionText": "Verified health-check endpoint, ruled out app deployment. Matched to active platform ICM; advised customer to enable geo-failover and app-level retries. Fully resolved once PG mitigated the incident.",
-      "causeText": "Regional platform networking incident.",
+      "resolutionText": "Ruled out a deployment or app defect by confirming identical behavior on the staging slot with the prior build. Matched the failure window to an active platform ICM. Advised the customer to enable geo-failover with Traffic Manager and app-level retries (exponential backoff). Fully resolved once the product group mitigated the incident; no code change required.",
+      "causeText": "Regional platform networking incident; autoscale coincidence, not the cause.",
       "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
-      "csat": 4,
+      "csat": 5,
       "currentSeverity": "A"
     },
     {
       "caseNumber": "8809074355012487",
-      "title": "Web app 503 spikes correlated to platform incident",
+      "title": "Web app 503 spikes blamed on plan-tier change, actually platform-side",
       "similarity": "medium",
-      "resolutionText": "Scaled out instances and enabled retries as an interim mitigation; monitored until incident resolved. No code defect found.",
-      "causeText": "Platform-side transient errors.",
+      "resolutionText": "Customer had changed the App Service plan tier just before impact and assumed it was the cause. Reverted the tier in a staging environment and reproduced the 503s regardless, ruling out the change. Correlated to platform transient errors on the same scale unit. Scaled out minimum instances as an interim mitigation and monitored until the incident resolved. No code defect found.",
+      "causeText": "Platform-side transient errors; the customer plan-tier change was a red herring.",
       "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
       "csat": 4,
       "currentSeverity": "B"
+    },
+    {
+      "caseNumber": "8809074361120944",
+      "title": "502 and SQL timeouts mistaken for a database outage on App Service",
+      "similarity": "medium",
+      "resolutionText": "Initial triage suspected the SQL Database because of connection timeouts, but the database showed healthy DTU, no throttling, and no failovers. Traced the timeouts to instances being pulled during platform health-probe failures, which also produced 502s at the gateway. Added Polly transient-fault handling with exponential backoff to both the SQL and downstream HTTP clients, and enabled the App Service health check with warm-up. Errors cleared and the pattern did not recur.",
+      "causeText": "Platform scale-unit networking; SQL was healthy, timeouts were a downstream symptom.",
+      "rootCause": "Cloud > App Service > Platform networking > Regional transient degradation",
+      "csat": 4,
+      "currentSeverity": "A"
     }
   ]
 }
+

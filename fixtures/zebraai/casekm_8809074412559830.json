@@ -1,17 +1,17 @@
 {
   "case": {
     "caseNumber": "8809074412559830",
-    "title": "Azure App Service — intermittent HTTP 503 and latency spikes (East US)"
+    "title": "Azure App Service: intermittent HTTP 503/502 and latency spikes on revenue-critical checkout API (East US)"
   },
   "knowledgeArticles": [
     {
       "kmId": "417802",
-      "title": "Troubleshoot HTTP 503 errors in Azure App Service",
+      "title": "Troubleshoot HTTP 503 (and 502) errors in Azure App Service",
       "url": "https://learn.microsoft.com/azure/app-service/troubleshoot-http-503",
       "domain": "learn.microsoft.com",
       "source": "CSS Wiki",
       "relevance": "high",
-      "snippet": "HTTP 503 during platform events is often transient. Confirm health checks, enable automatic retries with exponential backoff, and consider scaling out or failing over to a paired region while the platform issue is mitigated..."
+      "snippet": "503 and 502 responses during a platform event are usually transient and originate at the front-end/ingress layer rather than in application code. Check the App Insights failures blade for the failing dependency, confirm the health-check endpoint, enable automatic retries with exponential backoff, and scale out or fail over to a paired region while the platform issue is mitigated. If there is no recent deployment and the same behavior appears on a staging slot, suspect a platform-side cause and correlate against active incidents."
     },
     {
       "kmId": "402515",
@@ -19,8 +19,27 @@
       "url": "https://learn.microsoft.com/azure/app-service/manage-disaster-recovery",
       "domain": "learn.microsoft.com",
       "source": "Knowledge.com",
+      "relevance": "high",
+      "snippet": "Use Azure Traffic Manager (priority routing) to send traffic to a healthy paired region during a regional impact, then fail back once the incident is mitigated. Combine regional failover with app-level retry patterns so in-flight requests survive brief transient errors. This is the recommended resilience posture for revenue-critical workloads with a single-region footprint."
+    },
+    {
+      "kmId": "431190",
+      "title": "Implement transient-fault handling with exponential backoff (Polly)",
+      "url": "https://learn.microsoft.com/azure/architecture/best-practices/transient-faults",
+      "domain": "learn.microsoft.com",
+      "source": "CSS Wiki",
+      "relevance": "high",
+      "snippet": "Wrap outbound HTTP and SQL calls in a retry policy with exponential backoff and jitter (for example using Polly) so transient 503/502 responses and connection timeouts are retried transparently instead of surfacing to the customer. Cap retries and add a circuit breaker to avoid amplifying load during a sustained platform event."
+    },
+    {
+      "kmId": "428077",
+      "title": "Configure App Service health checks and warm-up for reliable scale-out",
+      "url": "https://learn.microsoft.com/azure/app-service/monitor-instances-health-check",
+      "domain": "learn.microsoft.com",
+      "source": "Knowledge.com",
       "relevance": "medium",
-      "snippet": "Use Azure Traffic Manager to route traffic to a healthy paired region during a regional impact. Combine with app-level retry patterns for resilient recovery..."
+      "snippet": "Enable the App Service health check so unhealthy instances are removed from rotation, and configure application warm-up so new instances only receive traffic once ready. This reduces 503s during autoscale and prevents healthy instances from flapping when platform probes are briefly degraded."
     }
   ]
 }
+

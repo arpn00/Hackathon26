@@ -51,7 +51,7 @@ def test_graph_pauses_at_human_gate_then_resumes() -> None:
     final = graph.invoke(Command(resume={"decision": "approve"}), config)
     assert final["final_reply"] == "Based on similar resolved cases, here is your fix."
     assert final["seed_case"]["caseNumber"] == FLAGSHIP
-    assert len(final["precedents"]) == 3
+    assert len(final["precedents"]) == 4
 
 
 def test_graph_applies_reviewer_edit() -> None:

@@ -1,13 +1,13 @@
 {
   "case": {
     "caseNumber": "8809074412559830",
-    "title": "Azure App Service — intermittent HTTP 503 and latency spikes (East US)"
+    "title": "Azure App Service: intermittent HTTP 503/502 and latency spikes on revenue-critical checkout API (East US)"
   },
   "relatedIncidents": [
     {
       "incidentId": "599372041",
-      "title": "App Service — elevated 503/latency in East US (scale-unit networking)",
-      "summary": "A subset of App Service scale units in East US experienced transient networking degradation causing intermittent 503s and elevated latency.",
+      "title": "App Service: elevated 503/502 and latency in East US (scale-unit networking degradation)",
+      "summary": "A subset of App Service scale units in East US experienced transient networking degradation caused by a faulty network node rotation. Health probes to affected instances intermittently failed, so healthy instances were pulled from rotation, producing intermittent 503/502 responses, elevated P95 latency, and downstream SQL connection timeouts for tenants on those scale units. Impact was intermittent and load-sensitive (worse at peak). Detected 13:42 UTC, mitigated 16:05 UTC by rerouting traffic and recycling degraded nodes, and fully resolved 18:20 UTC. No customer action was required; customers with app-level retries and geo-failover saw minimal impact.",
       "incidentType": "PlatformOutage",
       "isOutage": true,
       "severity": "2",
@@ -17,9 +17,10 @@
       "mitigateDate": "2025-09-15T16:05:00Z",
       "resolveDate": "2025-09-15T18:20:00Z",
       "owningTeamName": "Azure App Service / Networking",
-      "mitigation": "Rerouted affected scale-unit traffic and recycled degraded network nodes.",
-      "howFixed": "Root-caused to a faulty network node rotation; corrected the rotation and added a guard to prevent recurrence.",
+      "mitigation": "Rerouted affected scale-unit traffic away from degraded network nodes and recycled the affected nodes; instances returned to healthy rotation.",
+      "howFixed": "Root-caused to a faulty network node rotation on the scale unit. Corrected the rotation, added a guard to prevent the bad state from recurring, and shipped a health-probe fix so healthy instances are no longer pulled during brief network blips.",
       "icmUrl": "https://portal.microsofticm.com/imp/v3/incidents/details/599372041"
     }
   ]
 }
+
