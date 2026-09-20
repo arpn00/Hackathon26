@@ -20,6 +20,7 @@ from typing import Any
 from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from langgraph.types import Command
 
 from app.agent import Runtime, get_runtime
@@ -234,6 +235,12 @@ def create_app(runtime: Runtime | None = None) -> FastAPI:
                 body.experiment, body.run_id, body.rating, body.note
             )
         return FeedbackResponse(status=result.get("status", "accepted"), detail=result)
+
+    # Serve the built SPA same-origin when present (container image); no-op in dev.
+    if settings.static_dir.is_dir() and (settings.static_dir / "index.html").exists():
+        app.mount(
+            "/", StaticFiles(directory=settings.static_dir, html=True), name="spa"
+        )
 
     return app
 

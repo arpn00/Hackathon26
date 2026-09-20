@@ -47,6 +47,9 @@ class Settings(BaseSettings):
     # Persistence (checkpoints + resolutions/feedback index)
     sqlite_path: Path = _REPO_ROOT / "backend" / "precedent.db"
 
+    # Built SPA served same-origin (populated in the container image); optional in dev.
+    static_dir: Path = Path(__file__).resolve().parent / "static"
+
     @property
     def cors_origins(self) -> list[str]:
         return [o.strip() for o in self.cors_allowed_origins.split(",") if o.strip()]
