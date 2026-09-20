@@ -81,10 +81,10 @@ export function AppHeader({ mode, onHome }: AppHeaderProps) {
         </span>
         <div className={styles.titleGroup}>
           <Text size={500} weight="semibold">
-            Precedent AI
+            Pre-cedent AI
           </Text>
           <Text size={200} style={{ color: tokens.colorNeutralForeground3 }}>
-            Support workspace · human-in-the-loop
+            Intelligent support case assistant
           </Text>
         </div>
       </button>

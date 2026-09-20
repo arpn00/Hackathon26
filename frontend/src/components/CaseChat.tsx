@@ -4,12 +4,17 @@ import {
   Text,
   Textarea,
   Button,
-  Spinner,
 } from "@fluentui/react-components";
-import { Send24Filled, Bot24Filled, Person24Filled } from "@fluentui/react-icons";
-import { useState } from "react";
+import {
+  Send24Filled,
+  Bot24Filled,
+  Person24Filled,
+  Sparkle16Regular,
+} from "@fluentui/react-icons";
+import { useEffect, useRef, useState } from "react";
 import { api, ApiRequestError } from "../api/client";
 import type { ChatContext, ChatTurn } from "../api/types";
+import { Markdown } from "./Markdown";
 
 const useStyles = makeStyles({
   wrapper: {
@@ -18,15 +23,25 @@ const useStyles = makeStyles({
     gap: tokens.spacingVerticalM,
   },
   intro: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
     color: tokens.colorNeutralForeground3,
+  },
+  introIcon: {
+    display: "inline-flex",
+    color: tokens.colorBrandForeground1,
   },
   thread: {
     display: "flex",
     flexDirection: "column",
-    gap: tokens.spacingVerticalM,
-    maxHeight: "320px",
+    gap: tokens.spacingVerticalL,
+    maxHeight: "360px",
     overflowY: "auto",
-    paddingRight: tokens.spacingHorizontalXS,
+    padding: tokens.spacingVerticalM,
+    borderRadius: tokens.borderRadiusLarge,
+    backgroundColor: tokens.colorNeutralBackground2,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
   },
   turn: {
     display: "flex",
@@ -41,8 +56,8 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: "28px",
-    height: "28px",
+    width: "30px",
+    height: "30px",
     borderRadius: tokens.borderRadiusCircular,
   },
   dotAgent: {
@@ -53,20 +68,55 @@ const useStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground4,
     color: tokens.colorNeutralForeground2,
   },
+  column: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "3px",
+    maxWidth: "82%",
+  },
+  columnUser: {
+    alignItems: "flex-end",
+  },
+  meta: {
+    color: tokens.colorNeutralForeground4,
+    paddingLeft: "2px",
+    paddingRight: "2px",
+  },
   bubble: {
     paddingTop: tokens.spacingVerticalS,
     paddingBottom: tokens.spacingVerticalS,
     paddingLeft: tokens.spacingHorizontalM,
     paddingRight: tokens.spacingHorizontalM,
     borderRadius: tokens.borderRadiusLarge,
-    maxWidth: "80%",
     whiteSpace: "pre-wrap",
   },
   bubbleAgent: {
-    backgroundColor: tokens.colorNeutralBackground3,
+    backgroundColor: tokens.colorNeutralBackground1,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
+    borderTopLeftRadius: tokens.borderRadiusSmall,
   },
   bubbleUser: {
     backgroundColor: tokens.colorBrandBackground2,
+    color: tokens.colorNeutralForeground1,
+    borderTopRightRadius: tokens.borderRadiusSmall,
+  },
+  typing: {
+    display: "inline-flex",
+    gap: "4px",
+    alignItems: "center",
+  },
+  typingDot: {
+    width: "6px",
+    height: "6px",
+    borderRadius: tokens.borderRadiusCircular,
+    backgroundColor: tokens.colorNeutralForeground4,
+    animationName: {
+      "0%, 80%, 100%": { opacity: 0.2, transform: "translateY(0)" },
+      "40%": { opacity: 1, transform: "translateY(-3px)" },
+    },
+    animationDuration: "1.2s",
+    animationIterationCount: "infinite",
+    animationTimingFunction: "ease-in-out",
   },
   composer: {
     display: "flex",
@@ -82,6 +132,19 @@ const useStyles = makeStyles({
   },
   error: {
     color: tokens.colorPaletteRedForeground1,
+  },
+  chipsWrap: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+  },
+  chipsLabel: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "4px",
+    color: tokens.colorNeutralForeground3,
+    textTransform: "uppercase",
+    letterSpacing: "0.04em",
   },
   chips: {
     display: "flex",
@@ -124,8 +187,15 @@ export function CaseChat({ caseNumber, context, enabled }: CaseChatProps) {
   const [draft, setDraft] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const threadRef = useRef<HTMLDivElement>(null);
 
   const suggestions = suggestionsFor(context);
+
+  // Keep the latest message in view as the conversation grows.
+  useEffect(() => {
+    const el = threadRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [turns, sending]);
 
   const ask = async (question: string) => {
     const q = question.trim();
@@ -152,12 +222,15 @@ export function CaseChat({ caseNumber, context, enabled }: CaseChatProps) {
   return (
     <div className={styles.wrapper}>
       <Text size={200} className={styles.intro}>
-        Ask questions grounded in the evidence you've gathered — precedents, knowledge
+        <span className={styles.introIcon}>
+          <Sparkle16Regular />
+        </span>
+        Ask questions grounded in the evidence you've gathered: precedents, knowledge
         articles, the related incident, and any draft.
       </Text>
 
-      {turns.length > 0 ? (
-        <div className={styles.thread}>
+      {turns.length > 0 || sending ? (
+        <div className={styles.thread} ref={threadRef}>
           {turns.map((t, i) => {
             const isUser = t.role === "user";
             return (
@@ -170,17 +243,45 @@ export function CaseChat({ caseNumber, context, enabled }: CaseChatProps) {
                 >
                   {isUser ? <Person24Filled /> : <Bot24Filled />}
                 </span>
-                <div
-                  className={`${styles.bubble} ${
-                    isUser ? styles.bubbleUser : styles.bubbleAgent
-                  }`}
-                >
-                  <Text size={200}>{t.content}</Text>
+                <div className={`${styles.column} ${isUser ? styles.columnUser : ""}`}>
+                  <Text size={100} className={styles.meta}>
+                    {isUser ? "You" : "Pre-cedent AI"}
+                  </Text>
+                  <div
+                    className={`${styles.bubble} ${
+                      isUser ? styles.bubbleUser : styles.bubbleAgent
+                    }`}
+                  >
+                    {isUser ? (
+                      <Text size={200}>{t.content}</Text>
+                    ) : (
+                      <Markdown content={t.content} />
+                    )}
+                  </div>
                 </div>
               </div>
             );
           })}
-          {sending ? <Spinner size="tiny" label="Thinking…" /> : null}
+
+          {sending ? (
+            <div className={styles.turn}>
+              <span className={`${styles.dot} ${styles.dotAgent}`}>
+                <Bot24Filled />
+              </span>
+              <div className={styles.column}>
+                <Text size={100} className={styles.meta}>
+                  Pre-cedent AI
+                </Text>
+                <div className={`${styles.bubble} ${styles.bubbleAgent}`}>
+                  <span className={styles.typing} aria-label="Thinking">
+                    <span className={styles.typingDot} />
+                    <span className={styles.typingDot} />
+                    <span className={styles.typingDot} />
+                  </span>
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
       ) : null}
 
@@ -191,20 +292,26 @@ export function CaseChat({ caseNumber, context, enabled }: CaseChatProps) {
       ) : null}
 
       {enabled && suggestions.length > 0 ? (
-        <div className={styles.chips}>
-          {suggestions.map((q) => (
-            <Button
-              key={q}
-              size="small"
-              shape="circular"
-              appearance="outline"
-              className={styles.chip}
-              disabled={sending}
-              onClick={() => void ask(q)}
-            >
-              {q}
-            </Button>
-          ))}
+        <div className={styles.chipsWrap}>
+          <Text size={100} className={styles.chipsLabel}>
+            <Sparkle16Regular />
+            Suggested questions
+          </Text>
+          <div className={styles.chips}>
+            {suggestions.map((q) => (
+              <Button
+                key={q}
+                size="small"
+                shape="circular"
+                appearance="outline"
+                className={styles.chip}
+                disabled={sending}
+                onClick={() => void ask(q)}
+              >
+                {q}
+              </Button>
+            ))}
+          </div>
         </div>
       ) : null}
 

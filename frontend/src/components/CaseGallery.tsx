@@ -4,7 +4,6 @@ import {
   Card,
   Text,
   Badge,
-  Button,
 } from "@fluentui/react-components";
 import {
   Sparkle16Filled,
@@ -78,8 +77,9 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
   },
   ticketId: {
-    color: tokens.colorNeutralForeground4,
+    color: tokens.colorNeutralForeground2,
     fontFamily: tokens.fontFamilyMonospace,
+    fontWeight: tokens.fontWeightSemibold,
   },
   spacer: {
     flexGrow: 1,
@@ -168,7 +168,7 @@ export function CaseGallery({ onRun, activeCaseNumber, disabled }: CaseGalleryPr
                     {c.ticketStatus}
                   </Badge>
                   <span className={styles.spacer} />
-                  <Text size={100} className={styles.ticketId}>
+                  <Text size={200} className={styles.ticketId}>
                     #{c.caseNumber}
                   </Text>
                 </div>
@@ -201,18 +201,6 @@ export function CaseGallery({ onRun, activeCaseNumber, disabled }: CaseGalleryPr
                     <Sparkle16Filled />
                     <Text size={100}>{c.expectedLabel}</Text>
                   </span>
-                  <Button
-                    appearance="primary"
-                    size="small"
-                    disabled={disabled}
-                    icon={<Sparkle16Filled />}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onRun(c.caseNumber);
-                    }}
-                  >
-                    Resolve with AI
-                  </Button>
                 </div>
               </div>
             </Card>

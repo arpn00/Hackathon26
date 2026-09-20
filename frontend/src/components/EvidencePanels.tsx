@@ -4,58 +4,125 @@ import {
   Text,
   Badge,
   Link,
-  Accordion,
-  AccordionItem,
-  AccordionHeader,
-  AccordionPanel,
 } from "@fluentui/react-components";
 import {
   History16Regular,
   BookOpen16Regular,
   Alert16Regular,
+  Open16Regular,
+  CheckmarkCircle16Filled,
+  Flash16Filled,
 } from "@fluentui/react-icons";
 
 const useStyles = makeStyles({
   group: {
     display: "flex",
     flexDirection: "column",
-    gap: tokens.spacingVerticalXS,
+    gap: tokens.spacingVerticalS,
   },
   groupHead: {
     display: "flex",
     alignItems: "center",
     gap: tokens.spacingHorizontalS,
-    color: tokens.colorNeutralForeground2,
+    color: tokens.colorNeutralForeground1,
   },
-  item: {
+  headMark: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "28px",
+    height: "28px",
+    borderRadius: tokens.borderRadiusCircular,
+    backgroundColor: tokens.colorBrandBackground2,
+    color: tokens.colorBrandForeground1,
+    flexShrink: 0,
+  },
+  list: {
     display: "flex",
     flexDirection: "column",
-    gap: "2px",
+    gap: tokens.spacingVerticalS,
   },
-  itemHead: {
+  card: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+    paddingTop: tokens.spacingVerticalS,
+    paddingBottom: tokens.spacingVerticalS,
+    paddingLeft: tokens.spacingHorizontalM,
+    paddingRight: tokens.spacingHorizontalM,
+    borderRadius: tokens.borderRadiusMedium,
+    backgroundColor: tokens.colorNeutralBackground1,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
+    borderLeftWidth: "3px",
+    borderLeftColor: tokens.colorNeutralStroke1,
+    transitionProperty: "border-color, box-shadow",
+    transitionDuration: "180ms",
+    ":hover": {
+      borderTopColor: tokens.colorBrandStroke1,
+      borderRightColor: tokens.colorBrandStroke1,
+      borderBottomColor: tokens.colorBrandStroke1,
+      borderLeftColor: tokens.colorBrandStroke1,
+      boxShadow: tokens.shadow4,
+    },
+  },
+  cardMatchHigh: {
+    borderLeftColor: tokens.colorPaletteGreenBorder2,
+  },
+  cardMatchMed: {
+    borderLeftColor: tokens.colorPaletteMarigoldBorder2,
+  },
+  cardHead: {
     display: "flex",
     alignItems: "center",
     gap: tokens.spacingHorizontalS,
     flexWrap: "wrap",
   },
-  body: {
-    color: tokens.colorNeutralForeground3,
+  cardTitle: {
+    color: tokens.colorNeutralForeground1,
   },
-  mono: {
+  spacer: { flexGrow: 1 },
+  idChip: {
     fontFamily: tokens.fontFamilyMonospace,
+    color: tokens.colorNeutralForeground3,
+    backgroundColor: tokens.colorNeutralBackground3,
+    borderRadius: tokens.borderRadiusSmall,
+    paddingLeft: "6px",
+    paddingRight: "6px",
+    paddingTop: "1px",
+    paddingBottom: "1px",
+  },
+  fieldLabel: {
     color: tokens.colorNeutralForeground4,
+    textTransform: "uppercase",
+    letterSpacing: "0.04em",
+  },
+  body: {
+    color: tokens.colorNeutralForeground2,
+    lineHeight: tokens.lineHeightBase200,
+  },
+  link: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "4px",
   },
   empty: {
     color: tokens.colorNeutralForeground4,
     fontStyle: "italic",
+    paddingLeft: tokens.spacingHorizontalM,
   },
   incident: {
     display: "flex",
     flexDirection: "column",
-    gap: tokens.spacingVerticalXS,
-    padding: tokens.spacingVerticalM,
+    gap: "6px",
+    paddingTop: tokens.spacingVerticalM,
+    paddingBottom: tokens.spacingVerticalM,
+    paddingLeft: tokens.spacingHorizontalM,
+    paddingRight: tokens.spacingHorizontalM,
     borderRadius: tokens.borderRadiusMedium,
     backgroundColor: tokens.colorPaletteRedBackground1,
+    border: `1px solid ${tokens.colorPaletteRedBorder1}`,
+    borderLeftWidth: "3px",
+    borderLeftColor: tokens.colorPaletteRedBorder2,
   },
 });
 
@@ -75,7 +142,7 @@ function GroupHeader({
   const styles = useStyles();
   return (
     <div className={styles.groupHead}>
-      {icon}
+      <span className={styles.headMark}>{icon}</span>
       <Text weight="semibold" size={300}>
         {title}
       </Text>
@@ -104,44 +171,53 @@ export function PrecedentsPanel({
           No similar prior cases found.
         </Text>
       ) : (
-        <Accordion multiple collapsible>
+        <div className={styles.list}>
           {precedents.map((p, idx) => {
             const caseNumber = s(p.caseNumber) ?? `precedent-${idx}`;
             const similarity = s(p.similarity);
+            const matchClass =
+              similarity === "high"
+                ? styles.cardMatchHigh
+                : similarity
+                  ? styles.cardMatchMed
+                  : "";
             return (
-              <AccordionItem value={caseNumber} key={caseNumber}>
-                <AccordionHeader>
-                  <div className={styles.itemHead}>
-                    <Text size={200} weight="semibold">
-                      {s(p.title) ?? `Case ${caseNumber}`}
+              <div className={`${styles.card} ${matchClass}`} key={caseNumber}>
+                <div className={styles.cardHead}>
+                  <Text size={200} weight="semibold" className={styles.cardTitle}>
+                    {s(p.title) ?? `Case ${caseNumber}`}
+                  </Text>
+                  <span className={styles.spacer} />
+                  {similarity ? (
+                    <Badge
+                      appearance="tint"
+                      color={similarity === "high" ? "success" : "warning"}
+                      size="small"
+                      icon={
+                        similarity === "high" ? <CheckmarkCircle16Filled /> : undefined
+                      }
+                    >
+                      {similarity} match
+                    </Badge>
+                  ) : null}
+                  <Text size={100} className={styles.idChip}>
+                    #{caseNumber}
+                  </Text>
+                </div>
+                {s(p.resolutionText) ? (
+                  <>
+                    <Text size={100} className={styles.fieldLabel}>
+                      Resolution
                     </Text>
-                    {similarity ? (
-                      <Badge
-                        appearance="tint"
-                        color={similarity === "high" ? "success" : "warning"}
-                        size="small"
-                      >
-                        {similarity} match
-                      </Badge>
-                    ) : null}
-                  </div>
-                </AccordionHeader>
-                <AccordionPanel>
-                  <div className={styles.item}>
-                    <Text size={100} className={styles.mono}>
-                      #{caseNumber}
+                    <Text size={200} className={styles.body}>
+                      {s(p.resolutionText)}
                     </Text>
-                    {s(p.resolutionText) ? (
-                      <Text size={200} className={styles.body}>
-                        {s(p.resolutionText)}
-                      </Text>
-                    ) : null}
-                  </div>
-                </AccordionPanel>
-              </AccordionItem>
+                  </>
+                ) : null}
+              </div>
             );
           })}
-        </Accordion>
+        </div>
       )}
     </div>
   );
@@ -165,35 +241,45 @@ export function KbPanel({
           No knowledge articles matched.
         </Text>
       ) : (
-        kbArticles.map((k, idx) => {
-          const kmId = s(k.kmId) ?? `km-${idx}`;
-          const url = s(k.url);
-          return (
-            <div className={styles.item} key={kmId}>
-              <div className={styles.itemHead}>
-                {url ? (
-                  <Link href={url} target="_blank" rel="noreferrer">
-                    <Text size={200} weight="semibold">
-                      {s(k.title) ?? `KB ${kmId}`}
+        <div className={styles.list}>
+          {kbArticles.map((k, idx) => {
+            const kmId = s(k.kmId) ?? `km-${idx}`;
+            const url = s(k.url);
+            const title = s(k.title) ?? `KB ${kmId}`;
+            return (
+              <div className={styles.card} key={kmId}>
+                <div className={styles.cardHead}>
+                  {url ? (
+                    <Link
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.link}
+                    >
+                      <Text size={200} weight="semibold">
+                        {title}
+                      </Text>
+                      <Open16Regular />
+                    </Link>
+                  ) : (
+                    <Text size={200} weight="semibold" className={styles.cardTitle}>
+                      {title}
                     </Text>
-                  </Link>
-                ) : (
-                  <Text size={200} weight="semibold">
-                    {s(k.title) ?? `KB ${kmId}`}
+                  )}
+                  <span className={styles.spacer} />
+                  <Text size={100} className={styles.idChip}>
+                    KB #{kmId}
                   </Text>
-                )}
-                <Text size={100} className={styles.mono}>
-                  KB #{kmId}
-                </Text>
+                </div>
+                {s(k.snippet) ? (
+                  <Text size={200} className={styles.body}>
+                    {s(k.snippet)}
+                  </Text>
+                ) : null}
               </div>
-              {s(k.snippet) ? (
-                <Text size={200} className={styles.body}>
-                  {s(k.snippet)}
-                </Text>
-              ) : null}
-            </div>
-          );
-        })
+            );
+          })}
+        </div>
       )}
     </div>
   );
@@ -218,12 +304,18 @@ export function IncidentPanel({
         </Text>
       ) : (
         <div className={styles.incident}>
-          <div className={styles.itemHead}>
-            <Text size={200} weight="semibold">
+          <div className={styles.cardHead}>
+            <Text size={200} weight="semibold" className={styles.cardTitle}>
               {s(incident.title) ?? "Incident"}
             </Text>
+            <span className={styles.spacer} />
             {incident.isOutage ? (
-              <Badge appearance="filled" color="danger" size="small">
+              <Badge
+                appearance="filled"
+                color="danger"
+                size="small"
+                icon={<Flash16Filled />}
+              >
                 Active outage
               </Badge>
             ) : null}
@@ -232,10 +324,10 @@ export function IncidentPanel({
                 {s(incident.status)}
               </Badge>
             ) : null}
+            <Text size={100} className={styles.idChip}>
+              ICM #{s(incident.incidentId)}
+            </Text>
           </div>
-          <Text size={100} className={styles.mono}>
-            ICM #{s(incident.incidentId)}
-          </Text>
           {s(incident.summary) ? (
             <Text size={200} className={styles.body}>
               {s(incident.summary)}

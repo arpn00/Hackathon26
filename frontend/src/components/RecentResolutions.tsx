@@ -1,8 +1,15 @@
 import { makeStyles, tokens, Text, Badge, Button } from "@fluentui/react-components";
-import { ArrowClockwise16Regular, Open16Regular } from "@fluentui/react-icons";
+import {
+  ArrowClockwise16Regular,
+  Open16Regular,
+  ChevronLeft16Regular,
+  ChevronRight16Regular,
+} from "@fluentui/react-icons";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../api/client";
 import type { ResolutionSummary } from "../api/types";
+
+const PAGE_SIZE = 5;
 
 const useStyles = makeStyles({
   wrapper: {
@@ -43,6 +50,16 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground4,
     fontStyle: "italic",
   },
+  pager: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    gap: tokens.spacingHorizontalS,
+    marginTop: tokens.spacingVerticalXS,
+  },
+  pagerInfo: {
+    color: tokens.colorNeutralForeground3,
+  },
 });
 
 interface RecentResolutionsProps {
@@ -54,11 +71,13 @@ export function RecentResolutions({ refreshKey, onOpen }: RecentResolutionsProps
   const styles = useStyles();
   const [items, setItems] = useState<ResolutionSummary[]>([]);
   const [available, setAvailable] = useState(true);
+  const [page, setPage] = useState(0);
 
   const load = useCallback(async () => {
     try {
       const resp = await api.listResolutions();
       setItems(resp.items);
+      setPage(0);
       setAvailable(true);
     } catch {
       setAvailable(false);
@@ -70,6 +89,11 @@ export function RecentResolutions({ refreshKey, onOpen }: RecentResolutionsProps
   }, [load, refreshKey]);
 
   if (!available) return null;
+
+  const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages - 1);
+  const start = safePage * PAGE_SIZE;
+  const pageItems = items.slice(start, start + PAGE_SIZE);
 
   return (
     <div className={styles.wrapper}>
@@ -91,7 +115,7 @@ export function RecentResolutions({ refreshKey, onOpen }: RecentResolutionsProps
         </Text>
       ) : (
         <div className={styles.list}>
-          {items.map((it) => (
+          {pageItems.map((it) => (
             <div className={styles.row} key={it.threadId}>
               <div className={styles.rowMain}>
                 <Text size={200} weight="semibold">
@@ -119,6 +143,29 @@ export function RecentResolutions({ refreshKey, onOpen }: RecentResolutionsProps
           ))}
         </div>
       )}
+      {items.length > PAGE_SIZE ? (
+        <div className={styles.pager}>
+          <Text size={100} className={styles.pagerInfo}>
+            {start + 1}–{start + pageItems.length} of {items.length}
+          </Text>
+          <Button
+            appearance="subtle"
+            size="small"
+            icon={<ChevronLeft16Regular />}
+            disabled={safePage === 0}
+            onClick={() => setPage(safePage - 1)}
+            aria-label="Previous page"
+          />
+          <Button
+            appearance="subtle"
+            size="small"
+            icon={<ChevronRight16Regular />}
+            disabled={safePage >= totalPages - 1}
+            onClick={() => setPage(safePage + 1)}
+            aria-label="Next page"
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

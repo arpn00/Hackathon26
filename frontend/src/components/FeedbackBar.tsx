@@ -70,7 +70,7 @@ export function FeedbackBar({ runId, experiment = "case_km" }: FeedbackBarProps)
     return (
       <div className={styles.done}>
         <CheckmarkCircle16Filled />
-        <Text size={200}>Thanks — your feedback was recorded for the flywheel.</Text>
+        <Text size={200}>Thanks, your feedback was recorded for the flywheel.</Text>
       </div>
     );
   }

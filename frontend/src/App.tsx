@@ -114,6 +114,12 @@ export function App() {
     setSelectedCase(trimmed);
   };
 
+  // Kick off a full resolve and jump to the top so the user sees it from the start.
+  const startResolve = (caseNumber: string) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    start(caseNumber);
+  };
+
   // Return to the home screen (queue + hero), clearing any selection or run.
   const goHome = () => {
     reset();
@@ -153,7 +159,7 @@ export function App() {
             <GuidedWorkspace
               key={selectedCase as string}
               caseNumber={selectedCase as string}
-              onSuggest={start}
+              onSuggest={startResolve}
               busy={busy}
             />
           ) : null}
@@ -166,7 +172,7 @@ export function App() {
 
           {busy && !run ? (
             <Card className={styles.card}>
-              <LoadingState label="Agent is recalling precedents and reasoning…" />
+              <LoadingState />
             </Card>
           ) : null}
 
@@ -211,14 +217,14 @@ export function App() {
 
                 <Divider style={{ marginTop: 16, marginBottom: 16 }} />
 
-                {state.phase === "reviewing" ? (
+                {state.phase === "completed" ? (
+                  <FeedbackBar runId={run.runId} />
+                ) : (
                   <ReviewBar
                     currentReply={run.draft?.reply ?? ""}
                     disabled={busy}
                     onReview={review}
                   />
-                ) : (
-                  <FeedbackBar runId={run.runId} />
                 )}
               </Card>
 

@@ -37,7 +37,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     });
   } catch {
     throw new ApiRequestError(
-      "Could not reach the Precedent AI backend. Is it running?",
+      "Could not reach the Pre-cedent AI backend. Is it running?",
       "network_error",
       0,
     );

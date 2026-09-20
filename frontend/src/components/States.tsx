@@ -8,7 +8,17 @@ import {
   Sparkle28Filled,
   ArrowRight16Regular,
 } from "@fluentui/react-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+// Stages surfaced while the full agent runs, so the wait feels like real work.
+const DEFAULT_STEPS = [
+  "Recalling similar past cases…",
+  "Reviewing knowledge base articles…",
+  "Checking for related live incidents…",
+  "Reasoning across the evidence…",
+  "Drafting a grounded reply…",
+  "Running a self-check…",
+];
 
 const useStyles = makeStyles({
   center: {
@@ -128,11 +138,33 @@ const useStyles = makeStyles({
   },
 });
 
-export function LoadingState({ label }: { label: string }) {
+export function LoadingState({
+  label,
+  messages,
+}: {
+  label?: string;
+  messages?: string[];
+}) {
   const styles = useStyles();
+  const steps = messages ?? DEFAULT_STEPS;
+  const [i, setI] = useState(0);
+
+  // Walk through the agent's stages so the wait reflects real work in progress.
+  useEffect(() => {
+    setI(0);
+    const id = setInterval(() => {
+      setI((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
+    }, 1800);
+    return () => clearInterval(id);
+  }, [steps]);
+
   return (
     <div className={styles.center}>
-      <Spinner size="large" label={label} />
+      <Spinner size="large" label={steps[i]} />
+      <Text size={200} className={styles.muted}>
+        {label ??
+          "Pre-cedent AI is working across ZebraAI experiments. This can take a few seconds."}
+      </Text>
     </div>
   );
 }
@@ -188,8 +220,8 @@ export function EmptyState({
           Ready when you are
         </Text>
         <Text size={300} className={styles.heroSub}>
-          Pick a ticket from your queue, or look up any case number. Precedent AI does the
-          research and drafts a reply — you stay in control.
+          Pick a ticket from your queue, or look up any case number. Pre-cedent AI does the
+          research and drafts a reply, so you stay in control.
         </Text>
       </div>
 

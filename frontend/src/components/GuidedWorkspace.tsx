@@ -6,22 +6,35 @@ import {
   Badge,
   Button,
   Spinner,
-  Divider,
+  TabList,
+  Tab,
+  Tooltip,
 } from "@fluentui/react-components";
 import {
   History20Regular,
   BookOpen20Regular,
   Alert20Regular,
+  History16Regular,
+  BookOpen16Regular,
+  Alert16Regular,
   CheckmarkCircle16Filled,
   Sparkle16Filled,
   Person16Regular,
   Clock16Regular,
   ArrowSync16Regular,
+  Notepad16Regular,
+  Warning16Filled,
+  Copy16Regular,
+  Checkmark16Regular,
+  Info16Regular,
+  ChevronDown16Regular,
+  ChevronUp16Regular,
 } from "@fluentui/react-icons";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { api, ApiRequestError } from "../api/client";
 import type { ChatContext } from "../api/types";
 import { DEMO_CASES } from "../data/demoCases";
+import type { CaseDetails } from "../data/demoCases";
 import { PrecedentsPanel, KbPanel, IncidentPanel } from "./EvidencePanels";
 import { CaseChat } from "./CaseChat";
 
@@ -49,20 +62,60 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground4,
     fontFamily: tokens.fontFamilyMonospace,
   },
-  spacer: { flexGrow: 1 },
-  detailMeta: {
-    display: "flex",
-    gap: tokens.spacingHorizontalL,
-    flexWrap: "wrap",
-    color: tokens.colorNeutralForeground3,
+  caseChip: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: tokens.spacingHorizontalXS,
+    paddingTop: "2px",
+    paddingBottom: "2px",
+    paddingLeft: tokens.spacingHorizontalS,
+    paddingRight: "4px",
+    borderRadius: tokens.borderRadiusMedium,
+    backgroundColor: tokens.colorNeutralBackground3,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
   },
-  metaItem: {
+  caseChipLabel: {
+    color: tokens.colorNeutralForeground3,
+    textTransform: "uppercase",
+    letterSpacing: "0.04em",
+  },
+  caseChipNumber: {
+    fontFamily: tokens.fontFamilyMonospace,
+    color: tokens.colorNeutralForeground1,
+    fontWeight: tokens.fontWeightSemibold,
+  },
+  spacer: { flexGrow: 1 },
+  titleRow: {
     display: "flex",
     alignItems: "center",
-    gap: "4px",
+    gap: tokens.spacingHorizontalS,
+    flexWrap: "wrap",
+  },
+  detailMeta: {
+    display: "flex",
+    gap: tokens.spacingHorizontalS,
+    flexWrap: "wrap",
+    color: tokens.colorNeutralForeground2,
+  },
+  metaItem: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "5px",
+    paddingTop: "3px",
+    paddingBottom: "3px",
+    paddingLeft: tokens.spacingHorizontalS,
+    paddingRight: tokens.spacingHorizontalS,
+    borderRadius: tokens.borderRadiusMedium,
+    backgroundColor: tokens.colorNeutralBackground2,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
+  },
+  metaIcon: {
+    color: tokens.colorNeutralForeground3,
+    display: "inline-flex",
   },
   summary: {
     color: tokens.colorNeutralForeground2,
+    lineHeight: tokens.lineHeightBase300,
   },
   sectionTitle: {
     color: tokens.colorNeutralForeground2,
@@ -73,6 +126,12 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     gap: tokens.spacingHorizontalM,
     marginBottom: tokens.spacingVerticalM,
+    flexWrap: "wrap",
+  },
+  headActions: {
+    display: "flex",
+    alignItems: "center",
+    gap: tokens.spacingHorizontalS,
     flexWrap: "wrap",
   },
   caps: {
@@ -91,6 +150,12 @@ const useStyles = makeStyles({
     borderRadius: tokens.borderRadiusMedium,
     backgroundColor: tokens.colorNeutralBackground2,
     border: `1px solid ${tokens.colorNeutralStroke2}`,
+    transitionProperty: "border-color, background-color, box-shadow",
+    transitionDuration: "220ms",
+  },
+  capDone: {
+    backgroundColor: tokens.colorBrandBackground2,
+    border: `1px solid ${tokens.colorBrandStroke1}`,
   },
   capTop: {
     display: "flex",
@@ -106,6 +171,10 @@ const useStyles = makeStyles({
     borderRadius: tokens.borderRadiusCircular,
     backgroundColor: tokens.colorBrandBackground2,
     color: tokens.colorBrandForeground1,
+  },
+  capMarkDone: {
+    backgroundColor: tokens.colorPaletteGreenBackground2,
+    color: tokens.colorPaletteGreenForeground1,
   },
   capTitle: {
     display: "flex",
@@ -124,15 +193,150 @@ const useStyles = makeStyles({
     gap: tokens.spacingVerticalL,
     marginTop: tokens.spacingVerticalL,
   },
-  actionBar: {
+  evidenceHeader: {
     display: "flex",
     alignItems: "center",
-    gap: tokens.spacingHorizontalM,
+    gap: "6px",
+    paddingTop: tokens.spacingVerticalM,
+    borderTop: `1px solid ${tokens.colorNeutralStroke2}`,
+    color: tokens.colorNeutralForeground2,
+  },
+  evidenceIcon: {
+    display: "inline-flex",
+    color: tokens.colorBrandForeground1,
+  },
+  evidenceTabs: {
+    marginTop: tokens.spacingVerticalXS,
+  },
+  tabCount: {
+    marginLeft: "6px",
+  },
+  reveal: {
+    animationName: {
+      from: { opacity: 0, transform: "translateY(8px)" },
+      to: { opacity: 1, transform: "translateY(0)" },
+    },
+    animationDuration: "340ms",
+    animationTimingFunction: "ease-out",
+    animationFillMode: "both",
+  },
+  detailGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    gap: tokens.spacingHorizontalS,
+  },
+  detailField: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "3px",
+    paddingTop: tokens.spacingVerticalS,
+    paddingBottom: tokens.spacingVerticalS,
+    paddingLeft: tokens.spacingHorizontalM,
+    paddingRight: tokens.spacingHorizontalM,
+    borderRadius: tokens.borderRadiusMedium,
+    backgroundColor: tokens.colorNeutralBackground2,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
+  },
+  detailLabel: {
+    color: tokens.colorNeutralForeground4,
+    textTransform: "uppercase",
+    letterSpacing: "0.04em",
+  },
+  detailValue: {
+    color: tokens.colorNeutralForeground1,
+    fontWeight: tokens.fontWeightSemibold,
+  },
+  section: {
+    display: "flex",
+    flexDirection: "column",
+    gap: tokens.spacingVerticalS,
+  },
+  detailsWrap: {
+    display: "flex",
+    flexDirection: "column",
+    gap: tokens.spacingVerticalL,
+    marginTop: tokens.spacingVerticalS,
+  },
+  sectionRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    color: tokens.colorNeutralForeground2,
+  },
+  sectionIcon: {
+    display: "inline-flex",
+    color: tokens.colorBrandForeground1,
+  },
+  panel: {
+    display: "flex",
+    flexDirection: "column",
+    gap: tokens.spacingVerticalM,
+    paddingTop: tokens.spacingVerticalM,
+    paddingBottom: tokens.spacingVerticalM,
+    paddingLeft: tokens.spacingHorizontalM,
+    paddingRight: tokens.spacingHorizontalM,
+    borderRadius: tokens.borderRadiusMedium,
+    backgroundColor: tokens.colorNeutralBackground2,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
+  },
+  block: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "3px",
+  },
+  blockLabel: {
+    color: tokens.colorNeutralForeground4,
+    textTransform: "uppercase",
+    letterSpacing: "0.04em",
+  },
+  notes: {
+    display: "flex",
+    flexDirection: "column",
+    gap: tokens.spacingVerticalM,
+  },
+  note: {
+    display: "flex",
+    gap: tokens.spacingHorizontalS,
+    alignItems: "flex-start",
+  },
+  noteDot: {
+    flexShrink: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "30px",
+    height: "30px",
+    borderRadius: tokens.borderRadiusCircular,
+    backgroundColor: tokens.colorBrandBackground2,
+    color: tokens.colorBrandForeground1,
+  },
+  noteCard: {
+    flexGrow: 1,
+    display: "flex",
+    flexDirection: "column",
+    gap: "3px",
+    paddingTop: tokens.spacingVerticalS,
+    paddingBottom: tokens.spacingVerticalS,
+    paddingLeft: tokens.spacingHorizontalM,
+    paddingRight: tokens.spacingHorizontalM,
+    borderRadius: tokens.borderRadiusMedium,
+    backgroundColor: tokens.colorNeutralBackground2,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
+  },
+  noteMeta: {
+    display: "flex",
+    gap: tokens.spacingHorizontalXS,
+    alignItems: "center",
     flexWrap: "wrap",
   },
-  actionHint: {
-    color: tokens.colorNeutralForeground3,
-    flexGrow: 1,
+  noteAuthor: {
+    color: tokens.colorNeutralForeground1,
+  },
+  noteTime: {
+    color: tokens.colorNeutralForeground4,
+  },
+  noteText: {
+    color: tokens.colorNeutralForeground2,
   },
 });
 
@@ -212,6 +416,48 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
   const anyGathered =
     precedents.status === "done" || kb.status === "done" || incidents.status === "done";
 
+  // Collapse the full ticket detail to a high-level header once evidence exists,
+  // so attention shifts to the gathered evidence. User can re-expand manually.
+  const [showFullTicket, setShowFullTicket] = useState(true);
+  const autoCollapsed = useRef(false);
+  useEffect(() => {
+    if (anyGathered && !autoCollapsed.current) {
+      autoCollapsed.current = true;
+      setShowFullTicket(false);
+    }
+    if (!anyGathered) autoCollapsed.current = false;
+  }, [anyGathered]);
+
+  // Which gathered-evidence tab is shown. Auto-advance to the most recently
+  // completed step so the newest evidence is always in view.
+  const [activeEvidence, setActiveEvidence] = useState<string>("precedents");
+  const prevDone = useRef<Set<string>>(new Set());
+  useEffect(() => {
+    const order = ["precedents", "kb", "incidents"];
+    const done = new Set<string>();
+    if (precedents.status === "done") done.add("precedents");
+    if (kb.status === "done") done.add("kb");
+    if (incidents.status === "done") done.add("incidents");
+    const newlyDone = order.filter((k) => done.has(k) && !prevDone.current.has(k));
+    if (newlyDone.length > 0) {
+      setActiveEvidence(newlyDone[newlyDone.length - 1]);
+    } else if (!done.has(activeEvidence) && done.size > 0) {
+      setActiveEvidence(order.find((k) => done.has(k)) as string);
+    }
+    prevDone.current = done;
+  }, [precedents.status, kb.status, incidents.status, activeEvidence]);
+
+  const [copied, setCopied] = useState(false);
+  const copyCase = async () => {
+    try {
+      await navigator.clipboard.writeText(caseNumber);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard may be unavailable (e.g. insecure context); ignore silently.
+    }
+  };
+
   const context: ChatContext = {
     seedCase: precedents.data?.seedCase ?? null,
     precedents: precedents.data?.precedents ?? [],
@@ -226,6 +472,8 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
       title: "Recall precedents",
       agent: "Vector Case Review",
       desc: "Find similar prior cases with their resolutions.",
+      zebra:
+        "Calls ZebraAI's Commercial Vector Case Review, a vector search across past commercial cases that returns the most similar resolved cases with their resolutions.",
       state: precedents,
       run: runPrecedents,
       count:
@@ -237,6 +485,8 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
       title: "Find KB articles",
       agent: "Case + KM",
       desc: "Pull knowledge articles and documentation.",
+      zebra:
+        "Calls ZebraAI's Commercial Case + KM, which retrieves Knowledge Management (KM) articles related to this case.",
       state: kb,
       run: runKb,
       count: kb.status === "done" ? kb.data?.kbArticles.length ?? 0 : null,
@@ -247,6 +497,8 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
       title: "Check live incidents",
       agent: "Case + ICM",
       desc: "Correlate with active or recent incidents.",
+      zebra:
+        "Calls ZebraAI's Commercial Case + ICM, which correlates the case with related incidents (ICMs) to deflect known outages.",
       state: incidents,
       run: runIncidents,
       count: incidents.status === "done" ? (incidents.data?.incident ? 1 : 0) : null,
@@ -255,7 +507,18 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
 
   return (
     <div className={styles.stack}>
-      <Card className={styles.card}>
+      <Card
+        className={styles.card}
+        style={{
+          borderLeft: `4px solid ${
+            demo?.severity === "Sev A"
+              ? tokens.colorPaletteRedBorder2
+              : demo?.severity === "Sev B"
+                ? tokens.colorPaletteDarkOrangeBorder2
+                : tokens.colorBrandStroke1
+          }`,
+        }}
+      >
         <div className={styles.detailHead}>
           <div className={styles.detailTop}>
             {demo ? (
@@ -276,33 +539,76 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
             <Badge appearance="tint" color="informative" size="small">
               {demo?.ticketStatus ?? "Open"}
             </Badge>
+            {demo?.details?.isCritSit ? (
+              <Badge appearance="filled" color="danger" size="small" icon={<Warning16Filled />}>
+                CritSit
+              </Badge>
+            ) : null}
             <span className={styles.spacer} />
-            <Text size={100} className={styles.ticketId}>
-              #{caseNumber}
-            </Text>
+            <span className={styles.caseChip}>
+              <Text size={100} className={styles.caseChipLabel}>
+                Case
+              </Text>
+              <Text size={300} className={styles.caseChipNumber}>
+                #{caseNumber}
+              </Text>
+              <Button
+                appearance="subtle"
+                size="small"
+                icon={copied ? <Checkmark16Regular /> : <Copy16Regular />}
+                aria-label="Copy case number"
+                title={copied ? "Copied" : "Copy case number"}
+                onClick={() => void copyCase()}
+              />
+            </span>
           </div>
-          <Text size={500} weight="semibold">
+          <Text size={600} weight="semibold" className={styles.titleRow}>
             {demo?.title ?? `Case ${caseNumber}`}
           </Text>
           {demo ? (
             <>
               <div className={styles.detailMeta}>
                 <span className={styles.metaItem}>
-                  <Person16Regular />
+                  <span className={styles.metaIcon}>
+                    <Person16Regular />
+                  </span>
                   <Text size={200}>{demo.customer}</Text>
                 </span>
-                <Text size={200}>{demo.product}</Text>
                 <span className={styles.metaItem}>
-                  <Clock16Regular />
+                  <Text size={200}>{demo.product}</Text>
+                </span>
+                <span className={styles.metaItem}>
+                  <span className={styles.metaIcon}>
+                    <Clock16Regular />
+                  </span>
                   <Text size={200}>{demo.sla}</Text>
                 </span>
-                <Text size={200}>
-                  {demo.waiting} · {demo.channel}
-                </Text>
+                <span className={styles.metaItem}>
+                  <Text size={200}>
+                    {demo.waiting} · {demo.channel}
+                  </Text>
+                </span>
               </div>
-              <Text size={300} className={styles.summary}>
-                {demo.summary}
-              </Text>
+              <Button
+                appearance="subtle"
+                size="small"
+                icon={showFullTicket ? <ChevronUp16Regular /> : <ChevronDown16Regular />}
+                iconPosition="after"
+                onClick={() => setShowFullTicket((v) => !v)}
+                style={{ alignSelf: "flex-start" }}
+              >
+                {showFullTicket ? "Hide details" : "Show full ticket details"}
+              </Button>
+              {showFullTicket ? (
+                <>
+                  <Text size={300} className={styles.summary}>
+                    {demo.summary}
+                  </Text>
+                  {demo.details ? (
+                    <TicketDetails styles={styles} details={demo.details} />
+                  ) : null}
+                </>
+              ) : null}
             </>
           ) : (
             <Text size={300} className={styles.summary}>
@@ -320,25 +626,50 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
             </Text>
             <div>
               <Text size={200} style={{ color: tokens.colorNeutralForeground3 }}>
-                Trigger each step to watch the agent work — or gather everything at once.
+                Trigger each step to watch the agent work, or gather everything at once.
               </Text>
             </div>
           </div>
-          <Button
-            appearance="secondary"
-            icon={<ArrowSync16Regular />}
-            onClick={runAll}
-            disabled={busy}
-          >
-            Gather all evidence
-          </Button>
+          <div className={styles.headActions}>
+            <Button
+              appearance="secondary"
+              icon={<ArrowSync16Regular />}
+              onClick={runAll}
+              disabled={busy}
+            >
+              Gather all evidence
+            </Button>
+            <Tooltip
+              content="Runs the full agent (recall, KB, incidents, reasoning and self-check) in one pass and drafts a reply for your review."
+              relationship="description"
+              withArrow
+            >
+              <Button
+                appearance="primary"
+                icon={<Sparkle16Filled />}
+                disabled={busy}
+                onClick={() => onSuggest(caseNumber)}
+              >
+                Review &amp; resolve
+              </Button>
+            </Tooltip>
+          </div>
         </div>
 
         <div className={styles.caps}>
           {caps.map((c) => (
-            <div key={c.key} className={styles.cap}>
+            <div
+              key={c.key}
+              className={`${styles.cap} ${c.state.status === "done" ? styles.capDone : ""}`}
+            >
               <div className={styles.capTop}>
-                <span className={styles.capMark}>{c.icon}</span>
+                <span
+                  className={`${styles.capMark} ${
+                    c.state.status === "done" ? styles.capMarkDone : ""
+                  }`}
+                >
+                  {c.state.status === "done" ? <CheckmarkCircle16Filled /> : c.icon}
+                </span>
                 <div className={styles.capTitle}>
                   <Text size={300} weight="semibold">
                     {c.title}
@@ -358,6 +689,14 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
                     {c.count}
                   </Badge>
                 ) : null}
+                <Tooltip content={c.zebra} relationship="description" withArrow>
+                  <Button
+                    appearance="transparent"
+                    size="small"
+                    icon={<Info16Regular />}
+                    aria-label={`How ${c.title} works`}
+                  />
+                </Tooltip>
               </div>
               <Text size={200} className={styles.capDesc}>
                 {c.desc}
@@ -388,15 +727,71 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
 
         {anyGathered ? (
           <div className={styles.results}>
-            {precedents.status === "done" ? (
-              <PrecedentsPanel precedents={precedents.data?.precedents ?? []} />
-            ) : null}
-            {kb.status === "done" ? (
-              <KbPanel kbArticles={kb.data?.kbArticles ?? []} />
-            ) : null}
-            {incidents.status === "done" ? (
-              <IncidentPanel incident={incidents.data?.incident ?? null} />
-            ) : null}
+            <div className={styles.evidenceHeader}>
+              <span className={styles.evidenceIcon}>
+                <Sparkle16Filled />
+              </span>
+              <Text size={300} weight="semibold">
+                Evidence gathered
+              </Text>
+            </div>
+            <TabList
+              className={styles.evidenceTabs}
+              selectedValue={activeEvidence}
+              onTabSelect={(_, d) => setActiveEvidence(d.value as string)}
+              size="medium"
+            >
+              {precedents.status === "done" ? (
+                <Tab value="precedents" icon={<History16Regular />}>
+                  Precedents
+                  <Badge
+                    appearance="tint"
+                    color="brand"
+                    size="small"
+                    className={styles.tabCount}
+                  >
+                    {precedents.data?.precedents.length ?? 0}
+                  </Badge>
+                </Tab>
+              ) : null}
+              {kb.status === "done" ? (
+                <Tab value="kb" icon={<BookOpen16Regular />}>
+                  KB articles
+                  <Badge
+                    appearance="tint"
+                    color="brand"
+                    size="small"
+                    className={styles.tabCount}
+                  >
+                    {kb.data?.kbArticles.length ?? 0}
+                  </Badge>
+                </Tab>
+              ) : null}
+              {incidents.status === "done" ? (
+                <Tab value="incidents" icon={<Alert16Regular />}>
+                  Live incident
+                  <Badge
+                    appearance="tint"
+                    color={incidents.data?.incident ? "danger" : "informative"}
+                    size="small"
+                    className={styles.tabCount}
+                  >
+                    {incidents.data?.incident ? 1 : 0}
+                  </Badge>
+                </Tab>
+              ) : null}
+            </TabList>
+            <div className={styles.reveal} key={activeEvidence}>
+              {activeEvidence === "precedents" && precedents.status === "done" ? (
+                <PrecedentsPanel precedents={precedents.data?.precedents ?? []} />
+              ) : null}
+              {activeEvidence === "kb" && kb.status === "done" ? (
+                <KbPanel kbArticles={kb.data?.kbArticles ?? []} />
+              ) : null}
+              {activeEvidence === "incidents" && incidents.status === "done" ? (
+                <IncidentPanel incident={incidents.data?.incident ?? null} />
+              ) : null}
+            </div>
           </div>
         ) : null}
       </Card>
@@ -409,31 +804,144 @@ export function GuidedWorkspace({ caseNumber, onSuggest, busy }: GuidedWorkspace
           <CaseChat caseNumber={caseNumber} context={context} enabled={anyGathered} />
         </div>
       </Card>
+    </div>
+  );
+}
 
-      <Card className={styles.card}>
-        <div className={styles.actionBar}>
-          <span className={styles.actionHint}>
-            <Text size={200}>
-              <Sparkle16Filled style={{ verticalAlign: "-2px" }} /> When you're ready, let
-              the agent reason across all sources and draft a reply for your review.
+type Styles = ReturnType<typeof useStyles>;
+
+// Renders rich CSS ticket metadata + handover notes for an info-heavy case.
+function TicketDetails({ styles, details }: { styles: Styles; details: CaseDetails }) {
+  const fields: Array<{ label: string; value: string }> = [];
+  if (details.currentQueue) fields.push({ label: "Queue", value: details.currentQueue });
+  if (details.entitlement) fields.push({ label: "Entitlement", value: details.entitlement });
+  if (details.caseAge) fields.push({ label: "Case age", value: details.caseAge });
+  if (details.createdOn) fields.push({ label: "Created", value: details.createdOn });
+  if (details.initialSeverity && details.maxSeverity)
+    fields.push({
+      label: "Severity",
+      value: `${details.initialSeverity} → ${details.maxSeverity} (max)`,
+    });
+  if (typeof details.ownershipCount === "number")
+    fields.push({ label: "Reassignments", value: String(details.ownershipCount) });
+  if (typeof details.collaborationCount === "number")
+    fields.push({ label: "Collaborations", value: String(details.collaborationCount) });
+  if (typeof details.initialResponseMet === "boolean")
+    fields.push({
+      label: "Initial response",
+      value: details.initialResponseMet ? "Met" : "Missed",
+    });
+
+  return (
+    <div className={styles.detailsWrap}>
+      {fields.length > 0 ? (
+        <div className={styles.section}>
+          <div className={styles.sectionRow}>
+            <span className={styles.sectionIcon}>
+              <Info16Regular />
+            </span>
+            <Text size={200} weight="semibold">
+              Ticket details
             </Text>
-          </span>
-          <Button
-            appearance="primary"
-            size="large"
-            icon={<Sparkle16Filled />}
-            disabled={busy}
-            onClick={() => onSuggest(caseNumber)}
-          >
-            Suggest resolution
-          </Button>
+          </div>
+          <div className={styles.detailGrid}>
+            {fields.map((f) => (
+              <div key={f.label} className={styles.detailField}>
+                <Text size={100} className={styles.detailLabel}>
+                  {f.label}
+                </Text>
+                <Text size={200} className={styles.detailValue}>
+                  {f.value}
+                </Text>
+              </div>
+            ))}
+          </div>
         </div>
-        <Divider style={{ marginTop: 16, marginBottom: 16 }} />
-        <Text size={200} style={{ color: tokens.colorNeutralForeground3 }}>
-          In a hurry? “Suggest resolution” runs the full agent — recall, KB, incidents,
-          reasoning and self-check — in one pass.
-        </Text>
-      </Card>
+      ) : null}
+
+      {details.issueDescription || details.causeText || details.rootCause ? (
+        <div className={styles.section}>
+          <div className={styles.sectionRow}>
+            <Text size={200} weight="semibold">
+              Diagnosis
+            </Text>
+          </div>
+          <div className={styles.panel}>
+            {details.issueDescription ? (
+              <div className={styles.block}>
+                <Text size={100} className={styles.blockLabel}>
+                  Issue description
+                </Text>
+                <Text size={200} className={styles.noteText}>
+                  {details.issueDescription}
+                </Text>
+              </div>
+            ) : null}
+            {details.causeText ? (
+              <div className={styles.block}>
+                <Text size={100} className={styles.blockLabel}>
+                  Suspected cause
+                </Text>
+                <Text size={200} className={styles.noteText}>
+                  {details.causeText}
+                </Text>
+              </div>
+            ) : null}
+            {details.rootCause ? (
+              <div className={styles.block}>
+                <Text size={100} className={styles.blockLabel}>
+                  Root cause (support topic)
+                </Text>
+                <Text
+                  size={200}
+                  className={styles.noteText}
+                  style={{ fontFamily: tokens.fontFamilyMonospace }}
+                >
+                  {details.rootCause}
+                </Text>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
+
+      {details.handoverNotes && details.handoverNotes.length > 0 ? (
+        <div className={styles.section}>
+          <div className={styles.sectionRow}>
+            <span className={styles.sectionIcon}>
+              <Notepad16Regular />
+            </span>
+            <Text size={200} weight="semibold">
+              Handover notes ({details.handoverNotes.length})
+            </Text>
+          </div>
+          <div className={styles.notes}>
+            {details.handoverNotes.map((n, i) => (
+              <div key={i} className={styles.note}>
+                <span className={styles.noteDot}>
+                  <Person16Regular />
+                </span>
+                <div className={styles.noteCard}>
+                  <div className={styles.noteMeta}>
+                    <Text size={200} weight="semibold" className={styles.noteAuthor}>
+                      {n.author}
+                    </Text>
+                    <Text size={100} style={{ color: tokens.colorNeutralForeground3 }}>
+                      · {n.role}
+                    </Text>
+                    <Text size={100} className={styles.noteTime}>
+                      · {n.timestamp}
+                    </Text>
+                  </div>
+                  <Text size={200} className={styles.noteText}>
+                    {n.text}
+                  </Text>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

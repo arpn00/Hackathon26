@@ -12,7 +12,7 @@ const INTERACTIONS: Interaction[] = [
   { actor: "agent", kind: "retrieve", detail: "Reviewed 3 precedents", revision: 0, ts: "2025-09-20T10:00:00Z" },
   { actor: "agent", kind: "route", detail: "Routed → resolve (confidence: high)", revision: 0, ts: "2025-09-20T10:00:01Z" },
   { actor: "agent", kind: "draft", detail: "Drafted resolution v1", revision: 1, ts: "2025-09-20T10:00:02Z" },
-  { actor: "human", kind: "reject", detail: "Reviewer rejected the draft — add rollback", revision: 0, ts: "2025-09-20T10:01:00Z" },
+  { actor: "human", kind: "reject", detail: "Reviewer rejected the draft: add rollback", revision: 0, ts: "2025-09-20T10:01:00Z" },
 ];
 
 describe("InteractionTimeline", () => {
