@@ -1,2 +1,0 @@
-#Videos
-All of our videos are available on our [ZebraAI Media Page](https://zebra-ai-web-prd.ait.microsoft.com/media). Watch how-to videos, catch up on our office hours, and learn how others are experimenting with ZebraAI. 
